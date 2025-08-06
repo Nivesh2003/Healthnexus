@@ -1,4 +1,5 @@
 import React from 'react'
+import { brandImages} from '../assets/imageAssets'
 
 function Navbar() {
     return (
@@ -27,8 +28,8 @@ function Navbar() {
                     <div className="container-fluid">
                         {/* Logo section */}
                         <div className="navbar-brand d-flex align-items-center">
-                            <img src="./src/assets/images/img.png" alt="Logo" className="me-2" style={{height: '50px'}} />
-                            <img src="./src/assets/images/logo.gif" alt="Logo GIF" style={{height: '40px'}} />
+                            <img src={brandImages.rightImg} alt="Logo" className="me-2" style={{height: '50px'}} />
+                            <img src={brandImages.logo} alt="Logo GIF" style={{height: '40px'}} />
                         </div>
 
                         {/* Mobile toggle button */}
@@ -39,7 +40,7 @@ function Navbar() {
 
                         {/* Navbar items */}
                         <div className="collapse navbar-collapse" id="navbarNav">
-                            <ul className="navbar-nav ms-auto align-items-center">
+                            <ul className="navbar-nav ms-auto align-items-center me-5">
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle text-primary fw-semibold" href="#" 
                                        role="button" data-bs-toggle="dropdown">
@@ -67,11 +68,6 @@ function Navbar() {
                                         <li><a className="dropdown-item" href="#">Enquiry 2</a></li>
                                         <li><a className="dropdown-item" href="#">Enquiry 3</a></li>
                                     </ul>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="#">
-                                        <img src="./src/assets/images/search.png" alt="Search" style={{height: '24px'}}/>
-                                    </a>
                                 </li>
                             </ul>
                         </div>

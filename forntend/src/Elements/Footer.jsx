@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { certifications } from '../assets/imageAssets'
 
 function Footer() {
   return (
@@ -200,14 +201,42 @@ function Footer() {
           </div>
         </div>
         <div className="row">
-          <div className="col-3 text-white fw-bold fs-5 fs-md-5 mb-2"><p>Follow Us</p>
-          <p className='text-white text-decoration-none d-block' style={{fontSize:'30px'}}><i class="fa-brands fa-square-facebook"></i>&nbsp;<i class="fa-brands fa-square-x-twitter"></i>&nbsp;<i class="fa-brands fa-square-youtube"></i>&nbsp;<i class="fa-brands fa-instagram"></i>&nbsp;<i class="fa-brands fa-linkedin-in"></i></p></div>
-          <div className="col-3 bg-warning">s</div>
-          <div className="col-6 bg-success">e</div>
+          <div className="col-12 col-md-6 col-lg-3 text-white fw-bold fs-5 fs-md-5 mb-3 text-center text-lg-start"><p>Follow Us</p>
+            <p className='text-white text-decoration-none d-block' style={{ fontSize: '30px' }}><i class="fa-brands fa-square-facebook"></i>&nbsp;<i class="fa-brands fa-square-x-twitter"></i>&nbsp;<i class="fa-brands fa-square-youtube"></i>&nbsp;<i class="fa-brands fa-instagram"></i>&nbsp;<i class="fa-brands fa-linkedin-in"></i></p></div>
+          <div className="col-12 col-md-6 col-lg-3 align-items-center justify-content-center d-flex  mb-3 text-center text-lg-start">
+            <img src={certifications.jciGoldSeal} alt="JCI Gold Seal" className="me-2" style={{ height: '60px' }} />
+            <img src={certifications.nabh} alt="NABH" className="me-2" style={{ height: '60px' }} />
+            <img src={certifications.nabl} alt="NABL" style={{ height: '60px' }} />
+          </div>
+          <div className="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center  mb-3 text-center text-lg-start">
+            <div className="search-bar d-flex align-items-center rounded bg-white" style={{ maxWidth: '500px', width: '100%' }}>
+              <i className="fa-solid fa-magnifying-glass text-muted ms-3 me-2"></i>
+              <input
+                type="search"
+                placeholder="Search for Doctor, Hospital or Treatment"
+                className='form-control border-0 bg-transparent'
+                style={{ fontSize: '14px', outline: 'none', height: '50px', boxShadow: 'none' }}
+              />
+              <button className='btn btn-info ms-2' style={{ height: '50px', color: 'white', width: '200px', fontSize: '14px', fontWeight: '500' }}>
+                SEARCH
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className='container-fluid'>
+          <p className='mt-3 mb-0' style={{ fontSize: '14px' }}>
+            Advisory Notice: 1. Lately, unauthorized individuals have attempted to make fraudulent representations of BLK-Max Hospital, using fake numbers to solicit private information and swindle money from unsuspecting and innocent individuals. Please note that Max Hospitals never solicit information such as bank details or payment authorisation on any link. We request you to be careful when sharing any sensitive information or clicking on unverified links. 2. BLK-Max Hospital never charges any money for job opportunities. Beware of any fraudulent individuals or agencies making such offers, and always verify information with official sources.
+          </p>
+        </div>
+        <div className='container-fluid  mb-3 text-center text-lg-start'>
+          <p className='mt-3 mb-0' style={{ fontSize: '14px' }}>Recaptcha Policy | Recaptcha Terms | Employee Login</p>
+        </div>
+        <div className='container-fluid mb-3 text-center text-lg-end'>
+          <p className='mt-3 mb-0' style={{ fontSize: '14px' }}>
+            © Health Nexus Super Speciality Hospital, 2023. All rights reserved. |  GST No: 07AAA11111111111 </p>
         </div>
       </div>
     </div>
   )
 }
-
 export default Footer
