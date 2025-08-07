@@ -37,7 +37,7 @@ function LoginForm() {
         <hr />
         <div className="mb-3">
           <label className="form-label">Mobile Number / Email ID</label>
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Mobile Number / Email ID" />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Mobile Number / Email ID" />
         </div>
 
         <div className="mb-3">
