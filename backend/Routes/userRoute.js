@@ -1,0 +1,27 @@
+const express = require('express');
+const userRoute = express.Router();
+const userModel = require('../Models/userMondel');
+
+userRoute.get('',async (req,res)=>{
+    const user = await userModel.find();
+    res.json({ 'msg': 'success', "value": user });
+})
+userRoute.post('/add',async(req,res)=>{
+    const user = await userModel.create(req.body);
+    res.json({ 'msg': 'success', "value": user });
+})
+
+userRoute.post('',async (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = await userModel.findOne({email:email});
+    if(user && user.password === password) {
+        console.log('User logged in successfully');
+        res.json({ 'msg': 'success', 'type': user.type });
+    }else {
+        console.log('User login failed');
+        res.json({ 'msg': 'failed' });
+    }
+});
+
+module.exports = userRoute;
