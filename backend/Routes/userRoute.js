@@ -16,10 +16,8 @@ userRoute.post('',async (req, res) => {
     const password = req.body.password;
     const user = await userModel.findOne({email:email});
     if(user && user.password === password) {
-        console.log('User logged in successfully');
         res.json({ 'msg': 'success', 'type': user.type });
     }else {
-        console.log('User login failed');
         res.json({ 'msg': 'failed' });
     }
 });
