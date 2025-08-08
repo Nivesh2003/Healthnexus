@@ -25,7 +25,7 @@ function App() {
           {/*Doctor dashboard routes*/}
         <Route path="/doctor-login" element={<Doctormain />}>
           <Route index element={<DoctorDashboard />} />
-          <Route path="doctordash" element={<DoctorDashboard/>} />
+          <Route path="doctor-main" element={<DoctorDashboard/>} />
           <Route path="doctor-records" element={<DoctorRecords/>} />
           <Route path="appointments" element={<DoctorAppointments/>} />
         </Route> 

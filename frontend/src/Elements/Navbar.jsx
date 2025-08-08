@@ -25,7 +25,7 @@ function Navbar() {
                 </div>
                 
                 {/* Main navbar section - Bootstrap Navbar */}
-                <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+                <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
                     <div className="container-fluid">
                         {/* Logo section */}
                         <Link to={'/'}>

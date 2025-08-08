@@ -22,18 +22,17 @@ function Doctormain() {
         <Docsidebar/>
       </div>
 
-      {/* Right Content */}
-      <div
+{/* Right Content */}
+<div
         style={{
-            marginLeft: "220px",
-            marginRight:'-12px',
-            padding: "30px",
-            minHeight: "100vh",
-            background:"url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBw8NDQ0NDQ0PDQ0NDQ0NDQ0NDQ8NDQ0NFREWFhURFRUYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDQ0NDw0NDysZFRkrKystNysrKy03LS0tLSsrKy0rNy0rNys3KystKysrKysrKy0rKysrKysrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAaAAEBAQADAQAAAAAAAAAAAAABAAIDBQYE/8QAGBABAQEBAQAAAAAAAAAAAAAAAAER8DH/xAAaAQEBAQEBAQEAAAAAAAAAAAABAAIDBAUG/8QAGBEBAQEBAQAAAAAAAAAAAAAAABEBAhL/2gAMAwEAAhEDEQA/APBIJ9x+dKCGlJJlBKhnSqEKCKzTWay1irNNZtDWCs02s0N4zWa1Wam8YrNarNTWCstVlNis0hNYyDQGhQQjgSQ10xJKBspIFJAp6QDU9r4RQQ1HQtDKOhC1nSgtZBhrNVoo1rBWaazWWsFZprNDeCs01mprBWK1Wam8FZpoqawVmmiprBQayGhUqE1iQI1rECKHQ6WVEikEXokyte18NpM6NGmNatZWsqHRotGsmGi0WgGG1m1Ws0NZh1m1M0RrMVZprNDWC1mq0BvBWabWU1irJrKaxClmprACARQaE0EkmsSqTLWakkmlqCSegWsrXtfHh1azq1nVGtGjWdBjWgaLWVDqtZ0WhqGijRoMNrNVrNoazFWbTaxaGsxCqs2hrFazTQm8AVCKrNNCawAhEUEUFAigogrWgUg2Ekk7vVrOjXrr5Ua1azq0KNaLRo0GNaNGjWVDaFo1GLRaNGhqG0WgWgxWs2q0UNZitZtVooaxUIVNKhBFVmmhFMlIgGgFAigpJLWsSSDWHvAki7bVrOrXor5sa1azo1VRrVrOrQo0tY0aDGtGjRophtFo1aDFotATUNrK0AoIIoFlNIVUIoJIoHQCEkihSAkRCtaCKDYRSTsNWsatdq8Eb1axq0VRrVrOrVTGtGjRoqjWgJGG0BaFEFoRQtQRVCSIoITQRCIRxYDGUcWIxlVrBgMCw4sTWYg1iwNRnCUjAiko+nVrOrW68Ua1azq0KNLWdWqqNatZ1alGtGs6kYbVoBR1BIxJINZyFYcOKtZyxhxrFgrecM4MbxYK3nLODG8WKnyxgxyYMFPljBjeLFV5YxNioxnDhSMGLEkokki1q0I14YdWhaqo1o0ako0tZJR1BJQpYlTmIoit5ypESq6Zyzhw4RXTOWcOHDgrWcsrGsWKtZyxixvFgp8sYMbxYqfLjxY3YMVHljFjeDFV5YxY0sVXlnFjWLEozhIVUcaZWmvA1q0alVCWdOmo6gSoTAYqcwmAwV0zkwxQit5ixEyCumYJDhMVbzkYcJxmumcs4saQrWcs4sbwYq15ZwY3gxDyxYMbwVVRmwY3gw0RjFjVgQjOLGghBgaSUfMlqL5qSSRQJRMZhRzGoRDIq3hjUZjUVdMwxoKBvMLQhkDpmGFNQOmYMakUhkDpmLFhWJvORiaxYGvLCxqwWFeWcGNVJnccdgbsFLO4wjgTMGDGkhGcRSUfGgmny2kkgiEkYYkW8ajUSDeGRoIN4Y0km8ahiQdcahiSdMahKDrypDiQbw4sCDasCSAsZSLIFSLOis0osMpJMrUkk//Z')",
-            backgroundSize:"cover",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          marginLeft: "250px",
+          marginRight: 0,
+          padding: "30px",
+          minHeight: "100vh",
+        backgroundColor: "#cfe9e3",
+        backgroundImage: "radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), radial-gradient(at 82% 65%, hsl(198.00, 100%, 50%) 0, transparent 55%)"
+
+      }} 
       >
         <Outlet /> {/* Renders the selected child route */}
       </div>
