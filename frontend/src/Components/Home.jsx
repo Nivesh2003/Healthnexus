@@ -1,4 +1,4 @@
-import './Home.css'
+import '../../src/App.css'
 import {checkup,doctor,opinion,sliderImages} from '../assets/imageAssets'
 
 function Home() {
