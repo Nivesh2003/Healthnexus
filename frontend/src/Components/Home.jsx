@@ -1,5 +1,6 @@
 import '../../src/App.css'
 import {checkup,doctor,opinion,sliderImages} from '../assets/imageAssets'
+import Chatbot from '../Elements/Chatbot'
 
 function Home() {
     return (
@@ -42,6 +43,8 @@ function Home() {
                     <img src="./src/assets/images/whats-app-logo.svg" alt="WhatsApp" style={{ width: '30px', height: '30px' }} />
                 </div>
             </div>
+
+            <Chatbot />
 
             {/* Hero Section with Bootstrap */}
             <div className='container-fluid  schedule-appointment mb-5'>

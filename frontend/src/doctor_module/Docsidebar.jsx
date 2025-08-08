@@ -5,7 +5,6 @@ import {
   faStethoscope,
   faChartBar,
   faFileAlt,
-  faPills,
   faCalendarAlt
 } from '@fortawesome/free-solid-svg-icons';
 
