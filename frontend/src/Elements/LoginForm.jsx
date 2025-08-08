@@ -18,7 +18,7 @@ function LoginForm() {
         navigate('/patient');
       } else if (data.type === "doctor") {
         console.log(data.type);
-        navigate('/doctor');
+        navigate('/doctor-login');
       } else {
         window.alert("Some error occurred contact with support");
         navigate('/login');
