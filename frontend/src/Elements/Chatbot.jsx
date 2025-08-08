@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import './chatbot.css';
+import '../../src/App.css';
 
 function Chatbot() {
   const [chatOpen, setChatOpen] = useState(false);
