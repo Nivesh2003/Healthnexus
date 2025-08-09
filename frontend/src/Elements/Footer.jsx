@@ -4,7 +4,7 @@ import { certifications } from '../assets/imageAssets'
 
 function Footer() {
   return (
-    <div>
+    <div className='doctor-page-footer'>
       <div className="container-fluid bg-primary text-white py-4">
         <div className="row g-2 g-md-3">
           <div className="col-12 col-lg-2 mb-3 mb-lg-0 ps-3 ps-lg-5 text-center text-lg-start">
@@ -202,7 +202,7 @@ function Footer() {
         </div>
         <div className="row">
           <div className="col-12 col-md-6 col-lg-3 text-white fw-bold fs-5 fs-md-5 mb-3 text-center text-lg-start"><p>Follow Us</p>
-            <p className='text-white text-decoration-none d-block' style={{ fontSize: '30px' }}><i class="fa-brands fa-square-facebook"></i>&nbsp;<i class="fa-brands fa-square-x-twitter"></i>&nbsp;<i class="fa-brands fa-square-youtube"></i>&nbsp;<i class="fa-brands fa-instagram"></i>&nbsp;<i class="fa-brands fa-linkedin-in"></i></p></div>
+            <p className='text-white text-decoration-none d-block' style={{ fontSize: '30px' }}><i className="fa-brands fa-square-facebook"></i>&nbsp;<i className="fa-brands fa-square-x-twitter"></i>&nbsp;<i className="fa-brands fa-square-youtube"></i>&nbsp;<i className="fa-brands fa-instagram"></i>&nbsp;<i className="fa-brands fa-linkedin-in"></i></p></div>
           <div className="col-12 col-md-6 col-lg-3 align-items-center justify-content-center d-flex  mb-3 text-center text-lg-start">
             <img src={certifications.jciGoldSeal} alt="JCI Gold Seal" className="me-2" style={{ height: '60px' }} />
             <img src={certifications.nabh} alt="NABH" className="me-2" style={{ height: '60px' }} />

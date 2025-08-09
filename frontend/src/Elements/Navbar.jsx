@@ -3,8 +3,10 @@ import { brandImages} from '../assets/imageAssets'
 import {Link} from 'react-router-dom';
 
 function Navbar() {
+    // Check if doctor page wrapper exists in DOM
+    const isDoctorPage = typeof window !== 'undefined' && document.querySelector('.doctor-main-wrapper');
     return (
-        <div>
+        <div className="doctor-page-navbar">
             <header>
                 {/* Top header section */}
                 <div className='bg-info text-white text-center py-2'>
@@ -25,7 +27,10 @@ function Navbar() {
                 </div>
                 
                 {/* Main navbar section - Bootstrap Navbar */}
-                <nav className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+                                <nav
+                                    className="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm"
+                                    style={isDoctorPage ? { marginLeft: '250px', width: 'calc(100% - 250px)' } : {}}
+                                >
                     <div className="container-fluid">
                         {/* Logo section */}
                         <Link to={'/'}>

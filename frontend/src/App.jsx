@@ -9,6 +9,7 @@ import Doctormain from './doctor_module/Doctormain'
 import DoctorDashboard from './doctor_module/DoctorDashboard'
 import DoctorRecords from './doctor_module/DoctorRecords'
 import DoctorAppointments from './doctor_module/DoctorAppointments'
+import Labtest from './lab_test/Labtest'
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Authpage/>} />
           <Route path="/register" element={<Authpage/>} />
-
+          <Route path='/labtest' element={<Labtest />} />
 
           <Route path="/patient" element={<Patient />} />
           {/*Doctor dashboard routes*/}
