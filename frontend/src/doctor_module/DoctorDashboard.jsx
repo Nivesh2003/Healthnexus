@@ -106,7 +106,7 @@ function DoctorDashboard() {
         <div className="col-lg-8">
   <div style={{ ...cardStyle, height: '100%' }}>
     <div className="d-flex justify-content-between align-items-center mb-4">
-      <h4 className="mb-0" style={{ color: "wheat" }}>
+      <h4 className="mb-0" style={{ color: "" }}>
         <FaListAlt style={iconStyle} />
         Activity Tab
       </h4>
@@ -242,7 +242,7 @@ function DoctorDashboard() {
 
           {/* Quick Actions */}
           <div style={{...cardStyle, marginBottom: '20px'}}>
-            <h5 className="mb-3" style={{ color: "wheat" }}>
+            <h5 className="mb-3" style={{ color: "" }}>
               <FaListAlt style={iconStyle} />
               Quick Actions
             </h5>
@@ -272,7 +272,7 @@ function DoctorDashboard() {
 
           {/* Health Summary */}
           <div style={cardStyle}>
-            <h5 className="mb-3" style={{color:"wheat"}}>
+            <h5 className="mb-3" style={{color:""}}>
               <FaInfoCircle style={iconStyle} />
               Notifications
             </h5>
