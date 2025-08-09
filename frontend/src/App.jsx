@@ -31,7 +31,7 @@ function App() {
 
 
           {/*Patient dashboard routes*/}
-        <Route path="/patientlogin" element={<PatientMain />}>
+        <Route path="/patientlogin" element={<ProtectedRoute><PatientMain /></ProtectedRoute>}>
           <Route index element={<PatientDashboard />} />
           <Route path="patient-dash" element={<PatientDashboard />} />
           <Route path="patient-records" element={<PatientRecords/>} />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faStethoscope,
@@ -10,6 +10,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 function PatientSidebar() {
+    const navigate = useNavigate();
+    function handleLogout() {
+        sessionStorage.clear();
+        window.alert("Logged out");
+        navigate('/login');
+      }
+
+
   const location = useLocation();
 
   const sidebarStyle = {
@@ -130,8 +138,11 @@ function PatientSidebar() {
         borderTop: '1px solid #34495e',
         textAlign: 'center'
       }}>
+         <button onClick={handleLogout} className="btn btn-danger mb-3">Logout </button>
       </div>
+     
     </div>
+
   );
 }
 
