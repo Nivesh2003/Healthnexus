@@ -32,7 +32,7 @@ function LoginForm() {
     <div className="p-4 border rounded shadow-sm bg-white">
       <form action="" onSubmit={handlesubmit}>
         <div className="mb-3">
-          <h4>Login</h4>
+          <h4 className='text-info'>Login</h4>
         </div>
         <hr />
         <div className="mb-3">

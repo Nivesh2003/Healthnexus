@@ -10,6 +10,7 @@ import DoctorDashboard from './doctor_module/DoctorDashboard'
 import DoctorRecords from './doctor_module/DoctorRecords'
 import DoctorAppointments from './doctor_module/DoctorAppointments'
 import Labtest from './lab_test/Labtest'
+import AppointmentPage from './Components/Appointment'
 
 function App() {
   return (
@@ -21,16 +22,19 @@ function App() {
           <Route path="/login" element={<Authpage/>} />
           <Route path="/register" element={<Authpage/>} />
           <Route path='/labtest' element={<Labtest />} />
+          <Route path="/find-doctor" element={<AppointmentPage/>} />
 
           <Route path="/patient" element={<Patient />} />
+
           {/*Doctor dashboard routes*/}
         <Route path="/doctor-login" element={<Doctormain />}>
           <Route index element={<DoctorDashboard />} />
-          <Route path="doctordash" element={<DoctorDashboard/>} />
+          <Route path="doctor-main" element={<DoctorDashboard/>} />
           <Route path="doctor-records" element={<DoctorRecords/>} />
           <Route path="appointments" element={<DoctorAppointments/>} />
         </Route> 
         {/*Doctor dashboard routes*/}
+        
         </Routes>
         <Footer />
       </BrowserRouter>

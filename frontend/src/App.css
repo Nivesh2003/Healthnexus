@@ -12,6 +12,9 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+
+                                                                   /*Home page styles*/
 .schedule-appointment{
     background-image: url(./assets/images/banner.jpg);
     width: 100%;
@@ -45,3 +48,178 @@
     opacity: 0.8;
 }
 
+/* Find doctor card on home page */
+.find-doc:hover {              
+  transform: scale(1.02);
+  transition: 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.find-doc:hover img {
+  transform: scale(1.02);
+  transition: 0.3s ease;
+}
+
+.find-doc:hover h6 {
+  color: #0d6efd; /* Bootstrap primary */
+}
+
+/*Home page styles end*/
+
+
+
+                                                               /*Chatbot styles*/
+.chat-container{
+    position: fixed;
+    width:300px;
+    bottom:90px;
+   right:20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow:0 8px 16px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .chat-header{
+    background-color: #007bff;
+    font-weight: bold;
+    padding: 10px;
+    background: #007bff;
+    color:#fff;
+    text-align: center;
+  }
+  .bot-icon{
+   bottom:20px;
+   right:20px;
+   position:fixed;
+   width: 60px;
+   height: 60px;
+   cursor:pointer;
+   z-index:999;
+  }
+  .bot-icon img{
+    width:100%;
+    height:100%;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  .chat-body{
+    max-height: 300px;
+    flex:1;
+    padding:10px;
+    overflow-y: auto;
+    background-color: #f1f1f1;
+  }
+  .chat-message.user{
+    background-color: #007bff;
+    color: white;
+   padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    max-width: 80%;
+    margin-left: auto;
+  }
+  .chat-message.bot{
+    background: #e4e6eb;
+     padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    align-self: flex-start;
+    max-width: 80%;
+  }
+  .chat-footer{
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+  }
+  .chat-footer input{
+    flex:1;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius: 4px;
+  }
+  .chat-footer button{
+    padding:8px 12px;
+    background: #007bff;
+    color:#fff;
+    border:none;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor:pointer;
+    margin-left: 5px;
+  }
+  .chat-body::-webkit-scrollbar{
+    display: none;  
+  }
+  
+  /* Chatbot container */
+  .chat-container {
+    z-index: 1100; /* Higher than WhatsApp button */
+  }
+
+
+                                                              /*Appointment page styles*/
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.btn-primary {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.btn-primary:hover {
+  background-color: #5855eb;
+  border-color: #5855eb;
+}
+
+.bg-primary {
+  background-color: #6366f1 !important;
+}
+
+.text-primary {
+  color: #6366f1 !important;
+}
+
+.card {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.input-group-text {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.form-control {
+  border-color: #d1d5db;
+}
+
+.form-control:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+}
+
+.btn-outline-secondary {
+  color: #6b7280;
+  border-color: #d1d5db;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+  color: #6b7280;
+}
+
+.text-warning {
+  color: #f59e0b !important;
+}
