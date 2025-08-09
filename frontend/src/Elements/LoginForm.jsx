@@ -12,6 +12,10 @@ function LoginForm() {
     const response = await axios.post('http://localhost:8000/api/login', user);
     const data = response.data;
     if (data.msg === "success") {
+
+      sessionStorage.setItem("authToken", data.token);
+      sessionStorage.setItem("userType", data.type);
+
       window.alert("Login successful!");
       if (data.type === "patient") {
         console.log(data.type);

@@ -16,7 +16,8 @@ userRoute.post('',async (req, res) => {
     const password = req.body.password;
     const user = await userModel.findOne({email:email});
     if(user && user.password === password) {
-        res.json({ 'msg': 'success', 'type': user.type });
+        const authToken = Math.random().toString(36).substring(2);  /*testing*/
+        res.json({ 'msg': 'success', 'type': user.type ,'token':authToken });
     }else {
         res.json({ 'msg': 'failed' });
     }

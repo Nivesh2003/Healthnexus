@@ -9,6 +9,7 @@ import Doctormain from './doctor_module/Doctormain'
 import DoctorDashboard from './doctor_module/DoctorDashboard'
 import DoctorRecords from './doctor_module/DoctorRecords'
 import DoctorAppointments from './doctor_module/DoctorAppointments'
+import ProtectedRoute from './Components/ProtectedRoute'
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
 
           <Route path="/patient" element={<Patient />} />
           {/*Doctor dashboard routes*/}
-        <Route path="/doctor-login" element={<Doctormain />}>
+        <Route path="/doctor-login" element={<ProtectedRoute><Doctormain /></ProtectedRoute>}>
           <Route index element={<DoctorDashboard />} />
           <Route path="doctor-main" element={<DoctorDashboard/>} />
           <Route path="doctor-records" element={<DoctorRecords/>} />
