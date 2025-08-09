@@ -19,7 +19,7 @@ function LoginForm() {
       window.alert("Login successful!");
       if (data.type === "patient") {
         console.log(data.type);
-        navigate('/patient');
+        navigate('/patientlogin');
       } else if (data.type === "doctor") {
         console.log(data.type);
         navigate('/doctor-login');
