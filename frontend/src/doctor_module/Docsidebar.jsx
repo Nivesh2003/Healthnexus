@@ -17,7 +17,7 @@ function Docsidebar() {
     top: 0,
     left: 0,
     width: '250px',
-    backgroundColor: '#cfe9e3',
+    backgroundColor: '#2c3e50',
     color: '#ecf0f1',
     padding: '30px 20px',
     boxShadow: '2px 0 10px rgba(0,0,0,0.1)',
@@ -76,7 +76,7 @@ function Docsidebar() {
   };
 
   const menuItems = [
-    { path: '/doctor-login/doctor-main', label: 'Dashboard', icon: faChartBar },
+    { path: '/doctor-login/doctormain', label: 'Dashboard', icon: faChartBar },
     { path: '/doctor-login/appointments', label: 'Appointments', icon: faCalendarAlt },
     { path: '/doctor-login/doctor-records', label: 'Records', icon: faFileAlt },
     // { path: '/doctor-login/prescriptions', label: 'Prescriptions', icon: faPills }

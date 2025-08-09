@@ -4,16 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faCalendarAlt, 
   faFileAlt, 
-  faBolt, 
   faChartBar, 
   faClock,
   faEye,
   faDownload,
-  faPhone,
-  faEnvelope,
-  faBell,
   faMapMarkerAlt,
-  faUserMd,
   faCalendarDay
 } from '@fortawesome/free-solid-svg-icons';
 

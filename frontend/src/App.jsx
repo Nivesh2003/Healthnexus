@@ -9,6 +9,7 @@ import Doctormain from './doctor_module/Doctormain'
 import DoctorDashboard from './doctor_module/DoctorDashboard'
 import DoctorRecords from './doctor_module/DoctorRecords'
 import DoctorAppointments from './doctor_module/DoctorAppointments'
+import Labtest from './lab_test/Labtest'
 import AppointmentPage from './Components/Appointment'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Authpage/>} />
           <Route path="/register" element={<Authpage/>} />
+          <Route path='/labtest' element={<Labtest />} />
           <Route path="/find-doctor" element={<AppointmentPage/>} />
 
           <Route path="/patient" element={<Patient />} />

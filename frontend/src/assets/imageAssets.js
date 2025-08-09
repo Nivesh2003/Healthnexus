@@ -10,6 +10,8 @@ import jciGoldSeal from './images/jci-gold-seal.png';
 import nabh from './images/nabh.png';
 import nabl from './images/nabl.png';
 import authimg from './images/illustration.png';
+import doctor_back from './images/dbackground.jpeg'
+import doctor from './images/find-doctor.svg'
 
 // Slider images
 import sliderImg1 from './images/slider-img1.jpg';
@@ -29,10 +31,9 @@ import eighthImg from './images/eight.png';
 import generalImg from './images/img.png';
 import checkup from './images/Health-checkup.svg';
 import opinion from './images/second-opinion.svg';
-import doctor from './images/find-doctor.svg';
 
 // Export individual images for direct use
-export { checkup, opinion, doctor, authimg };
+export { checkup, opinion, doctor_back, authimg,doctor };
 
 // Organized image objects for easy access
 
