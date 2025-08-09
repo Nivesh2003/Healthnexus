@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import '../../src/App.css'
 import {checkup,doctor,opinion,sliderImages} from '../assets/imageAssets'
 import Chatbot from '../Elements/Chatbot'
@@ -79,13 +80,16 @@ function Home() {
                      {/* Facilities Cards with Bootstrap Grid */}
                 <div className='row justify-content-center mt-5 mx-3'>
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
-                        <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                        <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto find-doc' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                        <Link to="/find-doctor" className="text-decoration-none"> {/*Link to appointment page */}
                             <img src={doctor} alt="Find a Doctor" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
                             <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Find a Doctor</h6>
+                            </Link>
                         </div>
                     </div>
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
                         <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                            
                             <img src={checkup} alt="Health Check-up" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
                             <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Health Check-up</h6>
                         </div>
