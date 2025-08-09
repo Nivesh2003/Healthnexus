@@ -13,6 +13,7 @@ function Docsidebar() {
 
    function handleLogout() {
     sessionStorage.clear();
+    window.alert("Logged out");
     navigate('/login');
   }
 
@@ -83,7 +84,7 @@ function Docsidebar() {
   };
 
   const menuItems = [
-    { path: '/doctor-login/doctormain', label: 'Dashboard', icon: faChartBar },
+    { path: '/doctor-login/doctor-main', label: 'Dashboard', icon: faChartBar },
     { path: '/doctor-login/appointments', label: 'Appointments', icon: faCalendarAlt },
     { path: '/doctor-login/doctor-records', label: 'Records', icon: faFileAlt },
     // { path: '/doctor-login/prescriptions', label: 'Prescriptions', icon: faPills }
