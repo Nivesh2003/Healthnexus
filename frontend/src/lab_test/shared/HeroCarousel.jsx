@@ -3,7 +3,7 @@ import { c1, c2, c3, c4 } from '../data/tests';
 
 export default function HeroCarousel() {
   return (
-    <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"  >
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img src={c1} className="d-block w-100" alt="..." style={{height: '350px'}}/>
