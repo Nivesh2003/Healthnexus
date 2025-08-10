@@ -12,7 +12,8 @@ app.use(cors());
 const port = process.env.PORT;
 
 
-app.use('/api/login', userRoute);
+app.use('/api/users', userRoute); // All users routes
+
 app.use('/chat', chatbot);
 
 app.listen(port, () => {

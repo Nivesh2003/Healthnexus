@@ -6,12 +6,12 @@ userRoute.get('',async (req,res)=>{
     const user = await userModel.find();
     res.json({ 'msg': 'success', "value": user });
 })
-userRoute.post('/add',async(req,res)=>{
+userRoute.post('/register',async(req,res)=>{
     const user = await userModel.create(req.body);
     res.json({ 'msg': 'success', "value": user });
 })
 
-userRoute.post('',async (req, res) => {
+userRoute.post('/login',async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const user = await userModel.findOne({email:email});
