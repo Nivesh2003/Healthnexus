@@ -16,7 +16,7 @@ function PatientMain() {
           backgroundColor: "#f8f9fa",
           borderRight: "1px solid #ddd",
           padding: "20px",
-          zIndex: 1000,
+          zIndex: 1100,
          
         }}
       >

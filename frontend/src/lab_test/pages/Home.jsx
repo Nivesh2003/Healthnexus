@@ -4,6 +4,7 @@ import SearchBar from '../shared/SearchBar'
 import TestCard from '../shared/TestCard'
 import BookingModal from '../shared/BookingModal'
 import tests from '../data/tests'
+import Footer from '../../Elements/Footer'
 
 export default function Home(){
   const [query, setQuery] = useState('')
@@ -13,6 +14,7 @@ export default function Home(){
 
   return (
     <>
+    <div className="container-fluid p-0">
       <div className="container mt-4">
         <div className="py-4">
           <SearchBar query={query} setQuery={setQuery} />
@@ -32,8 +34,10 @@ export default function Home(){
         <footer className="mt-5 py-4 text-center text-muted">
           © {new Date().getFullYear()} Health Nexus Lab Test
         </footer>
+        
       </div>
-
+      <Footer/>
+      </div>
       {selectedTest && (
         <BookingModal test={selectedTest} onClose={() => setSelectedTest(null)} />
       )}

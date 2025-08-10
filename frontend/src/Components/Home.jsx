@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import '../../src/App.css'
 import { checkup, doctor, opinion, sliderImages } from '../assets/imageAssets'
 import Chatbot from '../Elements/Chatbot'
+import Footer from '../Elements/Footer'
 
 function Home() {
     return (
@@ -200,6 +201,7 @@ function Home() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

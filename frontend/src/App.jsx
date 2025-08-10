@@ -51,7 +51,7 @@ function App() {
         {/*Doctor dashboard routes*/}
         
         </Routes>
-        <Footer />
+        
       </BrowserRouter>
     </>
   )
