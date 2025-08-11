@@ -1,4 +1,5 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Footer from './Elements/Footer'
 import Home from './Components/Home'
@@ -16,18 +17,32 @@ import PatientDashboard from './patient_module/PatientDashboard'
 import PatientRecords from './patient_module/PatientRecords'
 import PatientAppointments from './patient_module/PatientAppointments'
 import Prescriptions from './patient_module/Prescriptions'
+import Admin from './Admin/Admin'
+import Medicineadd from './Admin/Medicineadd'
+import Dashboard from './Admin/Dashboard'
+import LabTestAdd from './Admin/LabTestAdd'
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Authpage/>} />
           <Route path="/register" element={<Authpage/>} />
           <Route path='/labtest' element={<Labtest />} />
           <Route path="/find-doctor" element={<AppointmentPage/>} />
+
+          {/* Admin routes */}
+          <Route path="/admin" element={<Admin />}>
+        {/* Default child when /admin is visited */}
+        <Route index element={<Dashboard />} />
+        
+        <Route path="Medicineadd" element={<Medicineadd />} />
+        <Route path="Dashboard" element={<Dashboard />} />
+        <Route path="LabTestAdd" element={<LabTestAdd />} />
+      </Route>
+
 
 
           {/*Patient dashboard routes*/}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { 
   FaUser, 
@@ -20,8 +20,25 @@ import {
   FaExclamationTriangle,
   FaInfoCircle
 } from "react-icons/fa";
+import axios from 'axios';
 
 function PatientDashboard() {
+
+  const [user, setUser] = useState("");
+ 
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const id = sessionStorage.getItem("userId");
+        const res = await axios.get(`http://localhost:8000/api/users/${id}`);
+        setUser(res.data.value);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchUserData();
+  }, []);
+  
   const cardStyle = {
   backdropFilter: "blur(10px) saturate(180%)",
    WebkitBackdropFilter: "blur(10px) saturate(180%)",
@@ -107,7 +124,7 @@ function PatientDashboard() {
                     className="me-4"
                   />
                   <div>
-                    <h2 className="mb-2">Welcome back, Rajeev Shukla </h2>
+                    <h2 className="mb-2">Welcome back {user.fullName} </h2>
                     <p className="mb-1 opacity-75">Patient ID: P-12345 | Age: 35 | Blood Type: O+</p>
                     <p className="mb-0 opacity-75">Last Visit:July 15, 2025 | Next Appointment: Aug 18, 2025</p>
                   </div>

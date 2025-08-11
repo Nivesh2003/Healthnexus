@@ -3,7 +3,11 @@ userSchema = mongoose.Schema({
     "fullName": String,
     "dob": Date,
     "mobile": String,
-    "email": String,
+    "email": {
+     type:String,
+     unique:true,
+     required:true
+    },
     "gender": String,
     "password": String,
     "type": {

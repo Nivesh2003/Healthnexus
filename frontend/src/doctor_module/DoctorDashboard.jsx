@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { 
   FaUser, 
@@ -20,8 +20,31 @@ import {
   FaExclamationTriangle,
   FaInfoCircle
 } from "react-icons/fa";
+import axios from 'axios';
 
 function DoctorDashboard() {
+
+  // Fetching data from sessionStorage - Under development - nivesh
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const id = sessionStorage.getItem("userId");
+        const res = await axios.get(`http://localhost:8000/api/users/${id}`);
+        setUser(res.data.value);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchUserData();
+  }, []);
+  
+  if (!user) {
+    return <p>Loading...</p>;
+  }
+  
+
   const cardStyle = {
     background: 'rgba(255, 255, 255, 0.2)',
     borderRadius: '16px',
@@ -75,8 +98,8 @@ function DoctorDashboard() {
                     className="me-4"
                   />
                   <div>
-                    <h2 className="mb-2" style={{color:"wheat"}}>Welcome back, Dr. XYZ </h2>
-                    <p className="mb-1 opacity-75">Doctor ID: P-12345 | Age: 35 | Speciality:</p>
+                    <h2 className="mb-2" style={{color:"wheat"}}>Welcome back, {user.fullName} </h2>
+                    <p className="mb-1 opacity-75">Doctor ID: {(user._id).slice(-8)} | Email:{user.email} | Speciality:</p>
                     <p className="mb-0 opacity-75">Last Visit:July 15, 2025 | Next Appointment: Aug 18, 2025</p>
                   </div>
                 </div>

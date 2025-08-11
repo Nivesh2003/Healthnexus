@@ -14,7 +14,7 @@ const [formData,setformData] = useState({
 function handleDoctor(e) {
   e.preventDefault();
   const doctorId = prompt("Enter Doctor ID:");
-  if (doctorId === "munnambbs") {
+  if (doctorId === "doctor123") {
     setformData(prev => ({ ...prev, type: "doctor" }));
     alert("Doctor registration mode enabled.");
   } else if (doctorId !== null) {
