@@ -2,6 +2,7 @@
 import '../../src/App.css'
 import { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
+import Navbar from '../Elements/Navbar'
 
 // Doctor data
 const doctorsData = [
@@ -256,6 +257,8 @@ export default function AppointmentPage() {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="d-flex min-vh-100" style={{ backgroundColor: "#f8f9fa" }}>
       {/* Main Content */}
       <div className="flex-grow-1">
@@ -628,5 +631,6 @@ export default function AppointmentPage() {
         </div>
       )}
     </div>
+    </>
   )
 }

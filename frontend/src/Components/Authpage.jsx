@@ -3,9 +3,12 @@ import { NavLink, useLocation } from 'react-router-dom';
 import LoginForm from '../Elements/LoginForm';
 import RegisterForm from '../Elements/RegisterForm';
 import {authimg} from '../assets/imageAssets';
+import Navbar from '../Elements/Navbar';
 function Authpage() {
     const location = useLocation();
   return (
+    <>
+    <Navbar/>
     <div className="container mt-3">
     {/* Selection Tabs  */}
     <div className="d-flex justify-content-center mb-3 border-bottom">
@@ -47,6 +50,7 @@ function Authpage() {
 </div>
 
   </div>
+  </>
   );
 }
 

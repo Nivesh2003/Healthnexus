@@ -14,17 +14,7 @@ function Navbar() {
                 </div>
                 
                 {/* Second header section */}
-                <div className='position-relative overflow-hidden' style={{height: '42px'}}>
-                    <div className='h-100 w-25 bg-white position-absolute start-0'></div>
-                    <div className='h-2-diamond'></div>
-                    <div className='position-absolute end-0 text-white d-flex align-items-center justify-content-center gap-3 px-3' 
-                         style={{width: '68%', height: '98%', backgroundColor: '#0057a9'}}>
-                        <a href="" className='text-white text-decoration-none fw-semibold'>Academics</a>
-                        <a href="" className='text-white text-decoration-none fw-semibold'>International Patients</a>
-                        <a href="" className='text-white text-decoration-none fw-semibold'>Academics</a>
-                        <a href="" className='text-white text-decoration-none fw-semibold'>International Patients</a>
-                    </div>
-                </div>
+           
                 
                 {/* Main navbar section - Bootstrap Navbar */}
                                 <nav
@@ -60,11 +50,11 @@ function Navbar() {
                                     </ul>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link text-primary fw-semibold" href="#">Academics</a>
+                                    <a className="nav-link text-primary fw-semibold" href="#">Health Tools</a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link text-primary fw-semibold" href="#">International Patients</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle text-primary fw-semibold" href="#" 
                                        role="button" data-bs-toggle="dropdown">
