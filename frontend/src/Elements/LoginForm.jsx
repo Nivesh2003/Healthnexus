@@ -15,6 +15,8 @@ function LoginForm() {
 
       sessionStorage.setItem("authToken", data.token);
       sessionStorage.setItem("userType", data.type);
+      sessionStorage.setItem("userId", data.userId);
+
 
       window.alert("Login successful!");
       if (data.type === "patient") {
