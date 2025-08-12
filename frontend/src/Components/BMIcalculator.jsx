@@ -26,7 +26,8 @@ const resetForm = () => { setHeight('');setWeight('');setBmi('');setDesc('');set
 
 return (
   <>
-  <div className="container border">
+  <Navbar/>
+  <div className="container mt-4 border">
     <div className="row">
     <img className='col-3' src='https://www.iciciprulife.com/content/icici-prudential-life-insurance/tools-and-calculators/bmi_assets/images/Component21.svg'></img>
     <h1 className='col-9 py-3'>BMI CALCULATOR</h1>
@@ -44,7 +45,7 @@ return (
           </p>
           <div className="button-group">
           <input type='button' value={'Calculate'} className="form-control" onClick={calculateBMI}/>
-          <input type='button' value={'reset'} className="reset" onClick={resetForm}/>
+          <input type='button' value={'Reset'} className="reset" onClick={resetForm}/>
           </div>
         </form>
       </div>

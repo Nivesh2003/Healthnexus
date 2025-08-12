@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../Elements/Navbar";
 
 
 export default function BodyFatCalculator() {
@@ -40,7 +41,9 @@ export default function BodyFatCalculator() {
   const resetForm = () => { setHeight('');setWeight('');setGender('');setHip(''),setNeck(''),setWaist(''),setBodyFat(null);};
 
   return (
-    <div className="container my-5" style={{ backgroundColor: "#9cc9eeff", color: "white" }}>
+    <>
+    <Navbar/>
+    <div className="container mt-4 my-5" style={{ backgroundColor: "#9cc9eeff", color: "white" }}>
       <div className="row">
         {/* Left Form */}
         <div className="col-md-5 p-4 rounded" style={{ backgroundColor: "#5095b7ff", color: "white" }}>
@@ -141,5 +144,6 @@ export default function BodyFatCalculator() {
         </div>
       </div>
     </div>
+    </>
   );
 }

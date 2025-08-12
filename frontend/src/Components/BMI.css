@@ -9,12 +9,12 @@
   --overweight: coral;
   --obese: crimson;
 }
-body {
+/* body {
   background-color:#f5f8ff;
   display: grid;
   place-items: center;
   height: 100vh;
-}
+} */
 h1 {
   text-align: center;
   color: #006d87; 
@@ -53,6 +53,7 @@ h1 {
 }
 form input[type="button"]:hover {
   background-color: #006666;
+  color:white
 }
 .output {
   background-color: #e8f4f8; 
