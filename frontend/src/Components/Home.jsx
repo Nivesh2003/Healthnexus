@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom'
 import '../../src/App.css'
 import { checkup, doctor, opinion, sliderImages } from '../assets/imageAssets'
+import { Accordion, Container, Row, Col, Card } from 'react-bootstrap';
 import Chatbot from '../Elements/Chatbot'
-import Footer from '../Elements/Footer'
-import Navbar from '../Elements/Navbar'
-import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from '../Elements/Footer';
+import Navbar from '../Elements/Navbar';
 
 const faqData = {
     "Q. General Questions": [
         { q: "How do I book an appointment?", a: "You can call us or book online via our portal." },
-        { q: "What are the visiting hours?", a: "We’re open from 8 AM to 8 PM daily." },
-        { q: "What about the Visitor’s Waiting Areas in your hospital?", a: "For the comfort of your loved ones, waiting areas are available. The nursing staff can direct you to the correct waiting area." },
+        { q: "What are the visiting hours?", a: "We're open from 8 AM to 8 PM daily." },
+        { q: "What about the Visitor's Waiting Areas in your hospital?", a: "For the comfort of your loved ones, waiting areas are available. The nursing staff can direct you to the correct waiting area." },
     ],
     "Q. Billing & Insurance": [
         { q: "Which insurance do you accept?", a: "We accept Niva-Bupa, Nexus Health Insurance, and others." },
@@ -23,33 +22,32 @@ const faqData = {
 };
 const PatientsReviews = [
     {
-        name: "Mathilde Langevin",
+        name: "Prabhakar Singh",
         review:
-            "I, Aastha, 24, was diagnosed with a large 10L left ovarian cyst (31.6 x 27.8 x 17.8). Col. (Dr.) Sunil Kumar Chawla handled my case with great care and professionalism. He ensured all tests were done quickly and performed laparoscopic surgery with 3 incisions. I was able to walk the very next day & got discharged within 24 hours post--surgery. Forever grateful for his expertise and the entire Kailash Hospital Team.",
+            "I, Prabhakar Singh, 24, was diagnosed with a large 10L left ovarian cyst. (Dr.) Sunil Kumar Chawla handled my case with great care and professionalism.",
         posted: "Posted on: 17/06/2025",
-        img: "./src/assets/images/patent-img.png",
+        img: "./src/assets/images/patient6.png",
     },
     {
-        name: "Mads Eneqvist",
+        name: "Ajit Singh Chopra",
         review:
-            "Need a consultation regarding your healthcare or diagnosis? I'm always ready to provide you with professional healthcare consulting at an affordable priceCol (Dr) Sunil Kumar Chawla is an exceptional surgeon whose expertise, compassion and dedication are truly commendable. From the moment in walked into his cabin i was greeted with warmth and proffesionalism by him.upon being diagnosed with two 9 cm fibroid , i was understandably anxious and uncertain about what lay ahead. However from the moment i walked into Dr Chawla i was met with a sense of reassurance and proffesionalism that immediately put me at ease.During my consultation, Dr Chawla took the time to listen attentively to my concerns and thoroughly explain my diagnosis and treatment options in a way that was easy to understand. Their depth of knowledge instilled confidence in me knowing that i was in capable hands. A big thanks to Dr Chawla's guidance and expertise i have experienced significant improvement in my health and quality of life. I am truly grateful for their outstanding care and would highly recommend Dr Chawla to anyone in need of a skilled and compassionate laproscopic surgery.ThanksMegha Joshi Pandey.",
+            "Need a consultation regarding your health? I'm always ready to provide you professional health consulting at an affordable price.",
         posted: "Posted on: 27/04/2029",
-        img: "./src/assets/images/patent-img.png",
+        img: "./src/assets/images/patient2.png",
     },
     {
-        name: "David Clde",
+        name: "Rishabh Pant",
         review:
             "Need a consultation regarding your healthcare or diagnosis? I'm always ready to provide you with professional healthcare consulting at an affordable price.",
         posted: "Posted on: 27/09/2022",
-        img: "./src/assets/images/patent-img.png",
+        img: "./src/assets/images/patient3.png",
     },
     {
 
-        name: "Noelle Rebekah",
+        name: "Madhurika Das",
         review:
-            "My experience under the care of Dr. Sushil Sharma has been nothing short of extraordinary. As a Senior Consultant in Orthopedics and Joint Replacement Surgery, Dr. Sharma's expertise is unmatched. His thorough evaluation and personalized treatment plan have brought immense relief to my orthopedic issues. Dr. Sharma's compassionate approach and dedication to my well-being have instilled confidence in me. I am deeply grateful for his professionalism and highly recommend him to anyone seeking exceptional orthopedic care.",
-        posted: "Posted on: 31/06/2023",
-        img: "./src/assets/images/patent-img.png",
+            "My experience under the care of Dr. Sushil Sharma has been nothing short of extraordinary. As a Senior Consultant in Orthopedics and Joint Replacement Surgery, Dr. Sharma's expertise is unmatched. His thorough evaluation and personalized 31/06/2023",
+        img: "./src/assets/images/patient5.png",
     },
 ];
    const blogs = [
@@ -77,8 +75,12 @@ const PatientsReviews = [
 
 function Home() {
     return (
+
+
+        <>
+        <Navbar/>
         <div>
-            <Navbar/>
+      
             {/* Emergency Sticker - Better visibility */}
             <div className='position-fixed start-0 d-flex align-items-center justify-content-center text-white fw-bold'
                 style={{
@@ -108,25 +110,25 @@ function Home() {
 
             {/* WhatsApp Sticker - Fixed positioning */}
             <div className='position-fixed d-flex align-items-center'
-                style={{ right: '2%', bottom: '20%', zIndex: 1000 }}>
-                <div className='bg-success text-white px-3 py-2 rounded-pill me-2 d-none d-md-block'>
-                    <small className='fw-semibold'>Book an appointment</small>
-                </div>
-                <div className='bg-success rounded-circle d-flex align-items-center justify-content-center'
-                    style={{ width: '50px', height: '50px' }}>
+                style={{ right: '1.7%', bottom: '15%', zIndex: 1000 }}>
+                    <a href="">
+                <div className='rounded-circle d-flex align-items-center justify-content-center'
+                    style={{ width: '60px', height: '60px',backgroundColor:'green' }}>
                     <img src="./src/assets/images/whats-app-logo.svg" alt="WhatsApp" style={{ width: '30px', height: '30px' }} />
                 </div>
+                </a>
             </div>
 
             <Chatbot />
+            
 
             {/* Hero Section with Bootstrap */}
             <div className='container-fluid  schedule-appointment mb-5'>
                 <div className='row justify-content-center'>
                     <div className='col-lg-10 col-md-12'>
                         <h2 className='text-primary text-center mb-4 mt-5'>Schedule Your Appointment Online</h2>
-                        <div className='bg-white rounded shadow p-4 mb-4'>
-                            <div className='row  rounded'>
+                        <div className='appointment-bar bg-white rounded p-4 mb-4 text-center'>
+                            <div className='row rounded'>
                                 <div className='col-lg-9 col-md-8 mb-3 mb-md-0'>
                                     <div className='input-group search-container h-100 rounded-2 bg-white'>
                                         <span className='input-group-text bg-transparent border-0 px-3'>
@@ -141,8 +143,8 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className='col-lg-3 col-md-4'>
-                                    <div className='h-100 rounded d-flex align-items-center justify-content-center text-white fw-bold'
-                                        style={{ backgroundColor: '#0b8aa3ff', minHeight: '70px', borderRadius: '0 0.25rem 0.25rem 0', fontSize: '20px' }}>
+                                    <div className='appointment-booking-btn h-100 rounded d-flex align-items-center justify-content-center text-white fw-bold'
+                                        >
                                         Book an Appointment
                                     </div>
                                 </div>
@@ -151,65 +153,33 @@ function Home() {
                     </div>
                 </div>
                 {/* Facilities Cards with Bootstrap Grid */}
-                <div className='row justify-content-center mt-5 mx-3'>
+                <div className='row justify-content-center mt-5 mx-3 cursor-pointer'>
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
                         <Link to="/find-doctor" className="text-decoration-none"> {/*Link to appointment page */}
-                            <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto hover-card' style={{ maxWidth: '250px', minHeight: '150px' }}>
-                                <img src={doctor} alt="Find a Doctor" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
+                            <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto find-doc' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                                <img src="./src/assets/images/search-doctor2.gif" alt="Find a Doctor" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
                                 <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Find a Doctor</h6>
                             </div>
                         </Link>
                     </div>
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4 cursor-pointer'>
                         <Link to="/labtest" style={{ textDecoration: 'none' }}>
-                            <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto hover-card' style={{ maxWidth: '250px', minHeight: '150px' }}>
-                                <img src={checkup} alt="Health Check-up" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
+                            <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                                <img src="./src/assets/images/search-doctor.gif" alt="Health Check-up" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
                                 <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Health Check-up</h6>
                             </div>
                         </Link>
                     </div>
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
-                        <Link to="/medicine" style={{ textDecoration: 'none' }}>
-                            <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto hover-card' style={{ maxWidth: '250px', minHeight: '150px' }}>
-                                <img src={opinion} alt="Second Opinion" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
-                                <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Medicine</h6>
-                            </div>
+                    <Link to="/medicine" style={{ textDecoration: 'none' }}>
+                        <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                            <img src="./src/assets/images/doctor-gym.gif" alt="Second Opinion" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
+                            <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Awareness</h6>
+                        </div>
                         </Link>
-
                     </div>
-                </div>
-            </div>
-            {/* Bootstrap Carousel */}
-            <div className="container-fluid mt-3 mb-5 ">
-                <div id="carouselExampleDark" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                    <div className="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    </div>
-                    <div className="carousel-inner">
-                        <div className="carousel-item active">
-                            <img src={sliderImages.slide1} className="d-block w-100" alt="Slide 1" style={{ height: '400px', objectFit: 'cover' }} />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={sliderImages.slide2} className="d-block w-100" alt="Slide 2" style={{ height: '400px', objectFit: 'cover' }} />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={sliderImages.slide3} className="d-block w-100" alt="Slide 3" style={{ height: '400px', objectFit: 'cover' }} />
-                        </div>
-                        <div className="carousel-item">
-                            <img src={sliderImages.slide4} className="d-block w-100" alt="Slide 4" style={{ height: '400px', objectFit: 'cover' }} />
-                        </div>
-                    </div>
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span className="visually-hidden">Next</span>
-                    </button>
+                    <div style={{height:'120px',width:'100vw'
+            }}> <marquee behavior="" scrollamount="30" direction="right" style={{height:'180px',position:'absolute'}}><img src="./src/assets/images/ambulance.gif" alt="" className='marque-img'/></marquee></div>
                 </div>
             </div>
 
@@ -274,93 +244,96 @@ function Home() {
                             <img src="./src/assets/images/rightimg.png" alt="" className='img-fluid rounded' />
                         </a>
                     </div>
+                      <div style={{height:'50px',width:'100vw'
+            }}> <img src="./src/assets/images/globe.gif" alt="" className='right-globe'/></div>
                 </div>
             </div>
+
             {/* -----------------------------Facalities_section--------------------------------------- */}
 
             <div className="departments-bg py-5">
                 <div className="container text-center">
-                    <h2 className="mb-4 text-black">OUR FACILITIES</h2>
+                    <h2 className="mb-4 text-white">OUR FACALITIES</h2>
                     <div className="d-flex justify-content-center flex-wrap gap-3">
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Emergency Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/heart.gif" alt="" /></div>Emergency Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Pediatric Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/stomach.gif" alt="" /></div>Pediatric Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4 active-card">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div> Gynecology Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/urinery.gif" alt="" /></div> Gynecology Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Cardiology Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/kidney.gif" alt="" /></div>Cardiology Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Neurology Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/chest.gif" alt="" /></div>Neurology Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Psychiatry Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/skull.gif" alt="" /></div>Psychiatry Department</div>
                             </a>
                         </div>
                         <div className="card department-card px-3 py-4 active-card">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div> Gynecology Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/teeth.gif" alt="" /></div> Gynecology Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Cardiology Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/brain.gif" alt="" /></div>Cardiology Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Neurology Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/liver.gif" alt="" /></div>Neurology Department</div>
                             </a>
                         </div>
 
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
                                 <div className="icon mb-2"></div>
-                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/img.png" alt="" /></div>Psychiatry Department</div>
+                                <div className="name"><div><img className='facalities-card-img' src="./src/assets/images/heart.gif" alt="" /></div>Psychiatry Department</div>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-
+            
             {/*----------------------------Patient_reviews--------------------------------- */}
 
 
 
             <div className="patient-review-section container my-5">
-                <div className="patient-review text-center mb-4">
-                    <h2>What Our Patients Says</h2>
+                <div className="patient-review text-center mb-4 pt-4">
+                    <h2 style={{color:'white',fontFamily:"monospace",fontSize:'xxx-large'}}>What Our Patients Says</h2>
                 </div>
 
                 <div className="row">
@@ -372,8 +345,8 @@ function Home() {
                                         src={t.img}
                                         alt={t.name}
                                         className="rounded-circle me-3"
-                                        width="60"
-                                        height="60"
+                                        width="70"
+                                        height="70"
                                         style={{ position: 'sticky' }}
                                     />
                                     <div>
@@ -389,9 +362,10 @@ function Home() {
                             </div>
                         </div>
                     ))}
+                    
                 </div>
 
-                <div className="text-center bg-light p-4 rounded">
+                <div className="text-center pb-4">
                     <a href="">
                         <button className="consultation-button ">Get Consultation</button>
                     </a>
@@ -421,10 +395,12 @@ function Home() {
                             </Accordion>
                         </Col>
                     ))}
+                    
                 </Row>
+                
             </Container>
 
-            {/* --------------------BBlog_section-------------------------------------- */}
+            {/* ----------------------Blog_section-------------------------------------- */}
 
 <Container className="my-5">
       <Row className="justify-content-between align-items-center mb-3">
@@ -443,11 +419,15 @@ function Home() {
             </Card>
           </Col>
         ))}
+        
       </Row>
   
     </Container>
-            <Footer />
+
         </div>
+        <Footer/>
+        </>
+        
     )
 }
 

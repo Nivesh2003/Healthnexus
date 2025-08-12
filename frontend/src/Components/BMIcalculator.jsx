@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './BMI.css';
+
 import Navbar from '../Elements/Navbar';
 
 function BMIcalculator() {
