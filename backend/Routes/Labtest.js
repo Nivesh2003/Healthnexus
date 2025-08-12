@@ -15,6 +15,24 @@ labTestRoute.post('/add',upload.single('image'),async(req,res)=>{
     const labTest = await labTestModel.create(req.body);
     res.json({ 'msg': 'success', "value": labTest });
 })
+// Update lab test
+labTestRoute.put('/:id', upload.single('image'), async (req, res) => {
+    try {
+        const updateData = { ...req.body };
+        if (req.file) {
+            updateData.imageUrl = req.file.filename;
+        }
+        const updated = await labTestModel.findByIdAndUpdate(
+            req.params.id,
+            updateData,
+            { new: true }
+        );
+        if (!updated) return res.status(404).json({ msg: 'not found' });
+        res.json({ msg: 'success', value: updated });
+    } catch (err) {
+        res.status(500).json({ msg: 'error', error: err.message });
+    }
+});
 
 // Delete lab test
 labTestRoute.delete('/:id', async (req, res) => {

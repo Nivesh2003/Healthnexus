@@ -41,7 +41,6 @@ function Admin() {
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%',
                 color: '#232b4d', opacity: 0.8, position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, zIndex: 0
               }}>
-                <img src="/vite.svg" alt="Admin" style={{width: 120, marginBottom: 24, opacity: 0.7}} />
                 <h1 style={{fontWeight: 800, fontSize: '2.5rem', marginBottom: 8}}>Welcome Admin!</h1>
                 <p style={{fontSize: '1.2rem', maxWidth: 400, textAlign: 'center'}}>Select an option from the left menu to get started managing medicines and lab tests. Your dashboard is ready!</p>
               </div>

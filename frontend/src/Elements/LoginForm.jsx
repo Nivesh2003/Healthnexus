@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -20,11 +20,12 @@ function LoginForm() {
 
       window.alert("Login successful!");
       if (data.type === "patient") {
-        console.log(data.type);
         navigate('/patientlogin');
       } else if (data.type === "doctor") {
-        console.log(data.type);
         navigate('/doctor-login');
+      } else if (data.type === "admin") {
+        console.log(data.type);
+        navigate('/admin');
       } else {
         window.alert("Some error occurred contact with support");
         navigate('/login');
@@ -58,7 +59,7 @@ function LoginForm() {
               Remember me
             </label>
           </div>
-          <a href="#" className="text-decoration-none text-info ">Forgot password?</a>
+          <Link className="text-decoration-none text-info ">Forgot password?</Link>
         </div>
         <input type="submit" value="Login" className='btn btn-primary form-control ' />
       </form>

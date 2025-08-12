@@ -1,6 +1,15 @@
 import React from 'react'
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Adminleft() {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    sessionStorage.clear();
+    window.alert("Logged out");
+    navigate('/login');
+  }
+
   return (
     <div 
               className="col-2 sidebar-custom d-flex flex-column align-items-center justify-content-start"
@@ -36,6 +45,18 @@ function Adminleft() {
                     </Link>
                   </li>
                 </ul>
+                  {/* Footer */}
+      <div style={{
+        position: 'absolute',
+        bottom: '30px',
+        left: '20px',
+        right: '20px',
+        paddingTop: '20px',
+        borderTop: '1px solid #34495e',
+        textAlign: 'center'
+      }}>
+         <button onClick={handleLogout} className="btn btn-danger mb-3">Logout </button>
+      </div>
             </div>
   )
 }

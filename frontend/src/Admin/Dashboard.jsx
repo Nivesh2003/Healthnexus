@@ -55,7 +55,14 @@ function Dashboard() {
                 <p className="card-text mb-1"><b>Price:</b> {n.price}</p>
                 <p className="card-text mb-3"><b>Turnaround:</b> {n.turnaround}</p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                  <Link className='btn btn-sm btn-warning' style={{ minWidth: '70px' }}>Edit</Link>
+                  <Link
+                    className='btn btn-sm btn-warning'
+                    style={{ minWidth: '70px' }}
+                    to="/admin/LabTestAdd"
+                    state={{ type: 'lab', data: n }}
+                  >
+                    Edit
+                  </Link>
                   <button className='btn btn-sm btn-danger' style={{ minWidth: '70px' }} onClick={() => deleteLabTest(n._id, setLab)}>Delete</button>
                 </div>
               </div>
@@ -73,7 +80,14 @@ function Dashboard() {
                 <p className="card-text mb-1"><b>Price:</b> {n.price}</p>
                 <p className="card-text mb-3"><b>Turnaround:</b> {n.turnaround}</p>
                 <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-                  <Link className='btn btn-sm btn-warning' style={{ minWidth: '70px' }}>Edit</Link>
+                  <Link
+                    className='btn btn-sm btn-warning'
+                    style={{ minWidth: '70px' }}
+                    to="/admin/Medicineadd"
+                    state={{ type: 'medicine', data: n }}
+                  >
+                    Edit
+                  </Link>
                   <button className='btn btn-sm btn-danger' style={{ minWidth: '70px' }} onClick={() => deleteMedicine(n._id, setMedicine)}>Delete</button>
                 </div>
               </div>

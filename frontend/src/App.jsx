@@ -28,45 +28,43 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Authpage/>} />
-          <Route path="/register" element={<Authpage/>} />
+          <Route path="/login" element={<Authpage />} />
+          <Route path="/register" element={<Authpage />} />
           <Route path='/labtest' element={<Labtest />} />
-          <Route path="/find-doctor" element={<AppointmentPage/>} />
+          <Route path="/find-doctor" element={<AppointmentPage />} />
 
           {/* Admin routes */}
-          <Route path="/admin" element={<Admin />}>
-        {/* Default child when /admin is visited */}
-        <Route index element={<Dashboard />} />
-        
-        <Route path="Medicineadd" element={<Medicineadd />} />
-        <Route path="Dashboard" element={<Dashboard />} />
-        <Route path="LabTestAdd" element={<LabTestAdd />} />
-      </Route>
+          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}>
+            <Route index element={<Dashboard />} />
+            <Route path="Medicineadd" element={<Medicineadd />} />
+            <Route path="Dashboard" element={<Dashboard />} />
+            <Route path="LabTestAdd" element={<LabTestAdd />} />
+          </Route>
 
 
 
           {/*Patient dashboard routes*/}
-        <Route path="/patientlogin" element={<ProtectedRoute><PatientMain /></ProtectedRoute>}>
-          <Route index element={<PatientDashboard />} />
-          <Route path="patient-dash" element={<PatientDashboard />} />
-          <Route path="patient-records" element={<PatientRecords/>} />
-          <Route path="prescriptions" element={<Prescriptions/>} />
-          <Route path="patientapps" element={<PatientAppointments/>} />
-        </Route> 
-        {/*PAtient dashboard routes*/}
-        
+          <Route path="/patientlogin" element={<ProtectedRoute><PatientMain /></ProtectedRoute>}>
+            <Route index element={<PatientDashboard />} />
+            <Route path="patient-dash" element={<PatientDashboard />} />
+            <Route path="patient-records" element={<PatientRecords />} />
+            <Route path="prescriptions" element={<Prescriptions />} />
+            <Route path="patientapps" element={<PatientAppointments />} />
+          </Route>
+          {/*PAtient dashboard routes*/}
+
 
           {/*Doctor dashboard routes*/}
-        <Route path="/doctor-login" element={<ProtectedRoute><Doctormain /></ProtectedRoute>}>
-          <Route index element={<DoctorDashboard />} />
-          <Route path="doctor-main" element={<DoctorDashboard/>} />
-          <Route path="doctor-records" element={<DoctorRecords/>} />
-          <Route path="appointments" element={<DoctorAppointments/>} />
-        </Route> 
-        {/*Doctor dashboard routes*/}
-        
+          <Route path="/doctor-login" element={<ProtectedRoute><Doctormain /></ProtectedRoute>}>
+            <Route index element={<DoctorDashboard />} />
+            <Route path="doctor-main" element={<DoctorDashboard />} />
+            <Route path="doctor-records" element={<DoctorRecords />} />
+            <Route path="appointments" element={<DoctorAppointments />} />
+          </Route>
+          {/*Doctor dashboard routes*/}
+
         </Routes>
-        
+
       </BrowserRouter>
     </>
   )
