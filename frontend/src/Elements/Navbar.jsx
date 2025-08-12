@@ -49,8 +49,15 @@ function Navbar() {
                                         <li><a className="dropdown-item" href="#">Treatment 3</a></li>
                                     </ul>
                                 </li>
-                                <li className="nav-item">
-                                    <a className="nav-link text-primary fw-semibold" href="#">Health Tools</a>
+                                <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle text-primary fw-semibold" href="#" 
+                                       role="button" data-bs-toggle="dropdown">
+                                        Health Tools
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <li><Link to={'/bmi'} className='dropdown-item'>BMI calculator</Link></li>
+                                        <li><Link to={'/bodyfat'} className='dropdown-item'>Body Fat calculator</Link></li>
+                                    </ul>
                                 </li>
                                 {/* <li className="nav-item">
                                     <a className="nav-link text-primary fw-semibold" href="#">International Patients</a>

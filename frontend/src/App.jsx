@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Footer from './Elements/Footer'
 import Home from './Components/Home'
 import Authpage from './Components/Authpage'
+import BMIcalculator from './Components/BMIcalculator'
+import BodyFatcalculator from './Components/BodyFatcalculator'
 import Navbar from './Elements/Navbar'
 import Doctormain from './doctor_module/Doctormain'
 import DoctorDashboard from './doctor_module/DoctorDashboard'
@@ -32,6 +34,8 @@ function App() {
           <Route path="/register" element={<Authpage />} />
           <Route path='/labtest' element={<Labtest />} />
           <Route path="/find-doctor" element={<AppointmentPage />} />
+          <Route path="/bmi" element={<BMIcalculator/>} />
+            <Route path="/bodyfat" element={<BodyFatcalculator/>} />
 
           {/* Admin routes */}
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}>
