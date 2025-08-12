@@ -14,7 +14,11 @@ userSchema = mongoose.Schema({
         type: String,
         enum: ['doctor', 'patient'],
         default: 'patient'
+    },
+    "speciality": {
+        type: String,
+        default: null
     }
 });
-const user = mongoose.model('user', userSchema);
-module.exports = user;
+const User = mongoose.model('User', userSchema);
+module.exports = User;

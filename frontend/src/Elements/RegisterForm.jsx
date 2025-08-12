@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
  function RegisterForm() {
+const[isDoctor,setisDoctor]=useState(false);
 const [formData,setformData] = useState({
   fullName: '',
   dob: '',
@@ -9,14 +10,16 @@ const [formData,setformData] = useState({
   email: '',
   gender: '',
   password: '',
-  type: 'patient', // default is patient register
+  type: 'patient',
+  speciality: '' // default is patient register
 });
 function handleDoctor(e) {
   e.preventDefault();
   const doctorId = prompt("Enter Doctor ID:");
   if (doctorId === "doctor123") {
     setformData(prev => ({ ...prev, type: "doctor" }));
-    alert("Doctor registration mode enabled.");
+    alert("Doctor registratsion mode enabled.");
+      setisDoctor(true);
   } else if (doctorId !== null) {
     alert("Invalid Doctor ID");
   }
@@ -59,6 +62,29 @@ async function handleSubmit(e) {
         <label className="form-label">Email</label>
         <input type="email" name="email" value={formData.email} onChange={(e) => setformData({ ...formData, [e.target.name]: e.target.value })} className="form-control" placeholder="Email" style={{ fontWeight: 200 }}/>
       </div>
+
+      {isDoctor && (
+      <div className="mb-3">
+       <label className="form-label">Speciality</label>
+        <select
+          name="speciality"
+           value={formData.speciality}
+          onChange={(e) => setformData({ ...formData, [e.target.name]: e.target.value })}
+         className="form-control">
+ <option value="">Select Speciality</option>
+      <option value="Cardiology">Cardiology (Heart)</option>
+      <option value="Dermatology">Dermatology (Skin)</option>
+      <option value="Pediatrics">Pediatrics (Children)</option>
+      <option value="Orthopedics">Orthopedics (Bones & Joints)</option>
+      <option value="Neurology">Neurology (Brain & Nerves)</option>
+      <option value="Gynecology">Gynecology (Women's Health)</option>
+      <option value="Dentistry">Dentistry (Teeth & Gums)</option>
+      <option value="Ophthalmology">Ophthalmology (Eye Care)</option>
+      <option value="Psychiatry">Psychiatry (Mental Health)</option>
+      <option value="General Medicine">General Medicine</option>
+    </select>
+  </div>
+)}
 
       <div className="mb-3 text-center">
           <label className="form-label d-block">Gender</label>

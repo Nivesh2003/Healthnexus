@@ -109,6 +109,9 @@ function Home() {
             {/* WhatsApp Sticker - Fixed positioning */}
             <div className='position-fixed d-flex align-items-center'
                 style={{ right: '2%', bottom: '20%', zIndex: 1000 }}>
+                <div className='bg-success text-white px-3 py-2 rounded-pill me-2 d-none d-md-block'>
+                    <small className='fw-semibold'>Book an appointment</small>
+                </div>
                 <div className='bg-success rounded-circle d-flex align-items-center justify-content-center'
                     style={{ width: '50px', height: '50px' }}>
                     <img src="./src/assets/images/whats-app-logo.svg" alt="WhatsApp" style={{ width: '30px', height: '30px' }} />
