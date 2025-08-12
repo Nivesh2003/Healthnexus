@@ -23,6 +23,7 @@ import Admin from './Admin/Admin'
 import Medicineadd from './Admin/Medicineadd'
 import Dashboard from './Admin/Dashboard'
 import LabTestAdd from './Admin/LabTestAdd'
+import Medicine from './Medicine/Medicine'
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/login" element={<Authpage />} />
           <Route path="/register" element={<Authpage />} />
           <Route path='/labtest' element={<Labtest />} />
+          <Route path="/medicine" element={<Medicine />} />
           <Route path="/find-doctor" element={<AppointmentPage />} />
           <Route path="/bmi" element={<BMIcalculator/>} />
             <Route path="/bodyfat" element={<BodyFatcalculator/>} />
