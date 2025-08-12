@@ -241,7 +241,7 @@ function Home() {
                     </div>
                     <div className='col-lg-6'>
                         <a href="" className="d-block">
-                            <img src="./src/assets/images/rightimg.png" alt="" className='img-fluid rounded' />
+                        <img src="./src/assets/images/animation-specialist.gif" alt="" className='img-fluid ' style={{borderRadius:'50px'}}/>
                         </a>
                     </div>
                       <div style={{height:'50px',width:'100vw'
