@@ -169,10 +169,13 @@ function Home() {
                         </Link>
                     </div>
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
-                        <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto hover-card' style={{ maxWidth: '250px', minHeight: '150px' }}>
-                            <img src={opinion} alt="Second Opinion" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
-                            <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Awareness</h6>
-                        </div>
+                        <Link to="/medicine" style={{ textDecoration: 'none' }}>
+                            <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto hover-card' style={{ maxWidth: '250px', minHeight: '150px' }}>
+                                <img src={opinion} alt="Second Opinion" style={{ width: '80px', height: '80px', objectFit: 'contain' }} />
+                                <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Medicine</h6>
+                            </div>
+                        </Link>
+
                     </div>
                 </div>
             </div>
