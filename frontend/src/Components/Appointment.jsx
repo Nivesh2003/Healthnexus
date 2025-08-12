@@ -1,30 +1,30 @@
-"use client"
-import '../../src/App.css'
+
 import { useState } from "react"
 import "bootstrap/dist/css/bootstrap.min.css"
-import Navbar from '../Elements/Navbar'
-
+import './Appointment.css'
+import Navbar from "../Elements/Navbar"
+import Footer from "../Elements/Footer"
 // Doctor data
 const doctorsData = [
   {
     id: 1,
-    name: "Dr. Ralph Edwards",
+    name: "Dr. Rajesh Singh",
     specialty: "Dermatologist",
-    rate: 20,
-    image: "/doc7.webp",
+    rate: 2000,
+    image: "/d1.png",
     experience:
       "Over 10 years in clinical dermatology, treating a wide range of conditions from acne to autoimmune skin disorders.",
     specialties: ["General Dermatology", "Skin Allergy Treatment", "Acne & Scarring Care"],
     rating: 4,
     review:
-      "Dr. Edwards was clear, caring and professional. My skin improved significantly thanks to his treatment plan. Highly recommended!",
+      "Dr. Rajesh Singh was clear, caring and professional. My skin improved significantly thanks to his treatment plan. Highly recommended!",
   },
   {
     id: 2,
-    name: "Dr. Ronald Richards",
+    name: "Dr. Shakshi Sharma",
     specialty: "Neurologist",
-    rate: 20,
-    image: "/doc3.jpg",
+    rate: 1500,
+    image: "/d2.png",
     experience: "15+ years specializing in neurological disorders and brain health treatments.",
     specialties: ["Brain Disorders", "Epilepsy Treatment", "Neurological Rehabilitation"],
     rating: 5,
@@ -32,10 +32,10 @@ const doctorsData = [
   },
   {
     id: 3,
-    name: "Dr. Albert Boje",
+    name: "Dr. Prashant Singhal",
     specialty: "Dentist",
-    rate: 20,
-    image: "/doc7.webp",
+    rate: 2000,
+    image: "/d3.png",
     experience: "12 years of dental practice focusing on preventive and cosmetic dentistry.",
     specialties: ["General Dentistry", "Cosmetic Procedures", "Oral Surgery"],
     rating: 4,
@@ -43,10 +43,10 @@ const doctorsData = [
   },
   {
     id: 4,
-    name: "Dr. Floyd Miles",
+    name: "Dr. Madhuri Gupta",
     specialty: "Neurologist",
-    rate: 20,
-    image: "/doc4.jpg",
+    rate: 2000,
+    image: "/d4.png",
     experience: "8 years in neurology with focus on movement disorders and stroke care.",
     specialties: ["Movement Disorders", "Stroke Care", "Headache Treatment"],
     rating: 4,
@@ -54,10 +54,10 @@ const doctorsData = [
   },
   {
     id: 5,
-    name: "Dr. Leslie Alexander",
+    name: "Dr. Kapil Roy",
     specialty: "Psychiatrist",
-    rate: 20,
-    image: "/doc5.webp",
+    rate: 2000,
+    image: "/d5.png",
     experience: "10+ years in mental health, specializing in anxiety and depression treatment.",
     specialties: ["Anxiety Treatment", "Depression Therapy", "Cognitive Behavioral Therapy"],
     rating: 5,
@@ -65,10 +65,10 @@ const doctorsData = [
   },
   {
     id: 6,
-    name: "Prof. Brooklyn Crean",
+    name: "Prof. Dr. Anjali Verma",
     specialty: "General Practitioner",
-    rate: 30,
-    image: "/doc4.jpg",
+    rate: 3000,
+    image: "/d6.png",
     experience: "20+ years in family medicine and preventive healthcare.",
     specialties: ["Family Medicine", "Preventive Care", "Health Screenings"],
     rating: 5,
@@ -76,10 +76,10 @@ const doctorsData = [
   },
   {
     id: 7,
-    name: "Dr. Courtney Henry",
+    name: "Dr. Vikram Mehta",
     specialty: "Cardiologist",
-    rate: 20,
-    image: "/doc3.jpg",
+    rate: 2500,
+    image: "/d7.png",
     experience: "14 years specializing in heart conditions and cardiovascular health.",
     specialties: ["Heart Disease", "Hypertension", "Cardiac Surgery"],
     rating: 4,
@@ -87,10 +87,10 @@ const doctorsData = [
   },
   {
     id: 8,
-    name: "Prof. Eleanor Pena",
+    name: "Prof. Riya Singh",
     specialty: "Psychiatrist",
-    rate: 32,
-    image: "/doc5.webp",
+    rate: 3200,
+    image: "/d8.png",
     experience: "18+ years in psychiatric care and mental health research.",
     specialties: ["Bipolar Disorder", "PTSD Treatment", "Medication Management"],
     rating: 5,
@@ -249,7 +249,7 @@ export default function AppointmentPage() {
 
     console.log("Booking Details:", bookingDetails)
     alert(
-      `Appointment booked successfully!\n\nDoctor: ${bookingDetails.doctor}\nDate: ${bookingDetails.date}\nTime: ${bookingDetails.time}\nCost: $${bookingDetails.cost}`,
+      `Appointment booked successfully!\n\nDoctor: ${bookingDetails.doctor}\nDate: ${bookingDetails.date}\nTime: ${bookingDetails.time}\nCost: ₹${bookingDetails.cost}`,
     )
     setShowBookingModal(false)
     setSelectedTime("")
@@ -264,29 +264,8 @@ export default function AppointmentPage() {
       <div className="flex-grow-1">
         {/* Header */}
         <div className="bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
-          <h4 className="mb-0 fw-bold">Appointment</h4>
-          <div className="d-flex align-items-center gap-3">
-            <span style={{ fontSize: "20px", cursor: "pointer" }} onClick={() => alert("Notifications")}>
-              🔔
-            </span>
-            <div className="bg-primary text-white rounded p-2" style={{ cursor: "pointer" }}>
-              <span style={{ fontSize: "16px" }}>☀</span>
-            </div>
-            <div className="d-flex align-items-center gap-2">
-              <img
-                src="/placeholder.svg?height=32&width=32"
-                alt="Profile"
-                className="rounded-circle"
-                width="32"
-                height="32"
-              />
-              <div>
-                <small className="fw-bold">Razaan</small>
-                <br />
-                <small className="text-muted">razan@</small>
-              </div>
-            </div>
-          </div>
+          <h4 className="mb-0 fw-bold">Best Doctors</h4>
+          
         </div>
 
         <div className="row g-0">
@@ -394,12 +373,10 @@ export default function AppointmentPage() {
                     className={`btn w-100 py-2 ${
                       selectedTime === time
                         ? "btn-primary"
-                        : time === "11:00 AM"
-                          ? "btn-outline-secondary text-muted"
                           : "btn-outline-secondary"
                     }`}
                     onClick={() => handleTimeClick(time)}
-                    disabled={time === "11:00 AM"}
+                    
                   >
                     {time}
                   </button>
@@ -473,7 +450,7 @@ export default function AppointmentPage() {
                             <span className="me-1">👤</span> {doctor.specialty}
                           </small>
                           <small className="text-muted d-flex align-items-center">
-                            <span className="me-1">💲</span> ${doctor.rate}/hour
+                            <span className="me-1">💵</span> ₹{doctor.rate}/hour
                           </small>
                         </div>
                       </div>
@@ -526,8 +503,8 @@ export default function AppointmentPage() {
                 <span>{selectedDoctor.specialty}</span>
               </div>
               <div className="d-flex align-items-center justify-content-center gap-2">
-                <span className="text-primary">💲</span>
-                <span>${selectedDoctor.rate}/hour</span>
+                <span className="text-primary">💵</span>
+                <span>₹{selectedDoctor.rate}/hour</span>
               </div>
             </div>
 
@@ -602,7 +579,7 @@ export default function AppointmentPage() {
                 <hr />
 
                 <div className="mb-3">
-                  <strong>Consultation Fee:</strong> ${selectedDoctor.rate}
+                  <strong>Consultation Fee:</strong> ₹{selectedDoctor.rate}
                 </div>
 
                 {patientConcern && (
@@ -631,6 +608,7 @@ export default function AppointmentPage() {
         </div>
       )}
     </div>
+    <Footer/>
     </>
   )
 }
