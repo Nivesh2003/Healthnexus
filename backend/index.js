@@ -10,6 +10,7 @@ const labTestRoute = require('./Routes/Labtest');
 const medicineRoute = require('./Routes/Addmedi');
 const multur = require('./config/multerconfig')
 const path = require('path');
+const AppointmentRouter = require('./Routes/appointmentRoutes');
 
 
 
@@ -22,7 +23,7 @@ app.use('/lab', labTestRoute);
 app.use('/medicine', medicineRoute);
 app.use('/public', express.static('public'));
 app.use('/api/users', userRoute); // All users routes
-
+app.use("/api/appointments", AppointmentRouter); //Appointment booking route
 app.use('/chat', chatbot);
 
 app.listen(port, () => {

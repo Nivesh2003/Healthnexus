@@ -99,8 +99,8 @@ function DoctorDashboard() {
                   />
                   <div>
                     <h2 className="mb-2" style={{color:"wheat"}}>Welcome back, {user.fullName} </h2>
-                    <p className="mb-1 opacity-75">Doctor ID: {(user._id).slice(-8)} | Email:{user.email} | Speciality:</p>
-                    <p className="mb-0 opacity-75">Last Visit:July 15, 2025 | Next Appointment: Aug 18, 2025</p>
+                    <p className="mb-1 opacity-75">Doctor ID: {(user._id).slice(-8)} | Email:{user.email} | Speciality:{user.speciality}</p>
+                    {/* <p className="mb-0 opacity-75">Last Visit:July 15, 2025 | Next Appointment: Aug 18, 2025</p> */}
                   </div>
                 </div>
               </div>

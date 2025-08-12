@@ -24,6 +24,38 @@ import axios from 'axios';
 
 function PatientDashboard() {
 
+ //Booking appointment feature - nivesh 
+  const [showForm, setShowForm] = useState(false);
+  const [speciality, setSpeciality] = useState('');
+  const [bloodType, setBloodType] = useState('');
+  const [reason, setReason] = useState('');
+  const [idCard, setIdCard] = useState(null);
+  const [appointments, setAppointments] = useState([]);
+  const patientId = sessionStorage.getItem("userId");
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/appointments/patient/${patientId}`)
+      .then(res => setAppointments(res.data))
+      .catch(err => console.error(err));
+  }, []);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("patientId", patientId);
+    formData.append("speciality", speciality);
+    formData.append("bloodType", bloodType);
+    formData.append("reason", reason);
+    if (idCard) formData.append("idCard", idCard);
+
+    await axios.post("http://localhost:8000/api/appointments/create", formData);
+    alert("Appointment request sent");
+    setShowForm(false);
+  };
+
+
+
+ //Fetching data from user collections
   const [user, setUser] = useState("");
  
   useEffect(() => {
@@ -38,6 +70,10 @@ function PatientDashboard() {
     }
     fetchUserData();
   }, []);
+
+  if (!user) {
+    return <p>Loading...</p>;
+  }
   
   const cardStyle = {
   backdropFilter: "blur(10px) saturate(180%)",
@@ -57,26 +93,6 @@ function PatientDashboard() {
     ,border: 'none'
   };
 
-  const vitalCardStyle = {
-    ...cardStyle,
-    borderLeft: '4px solid #28a745'
-  };
-
-  const warningCardStyle = {
-    ...cardStyle,
-    borderLeft: '4px solid #ffc107'
-  };
-
-  const dangerCardStyle = {
-    ...cardStyle,
-    borderLeft: '4px solid #dc3545'
-  };
-
-  const infoCardStyle = {
-    ...cardStyle,
-    borderLeft: '4px solid #17a2b8'
-  };
-
   const profileImageStyle = {
     width: '80px',
     height: '80px',
@@ -84,12 +100,6 @@ function PatientDashboard() {
     objectFit: 'cover',
     border: '4px solid rgba(255,255,255,0.3)',
     boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
-  };
-
-  const vitalDisplayStyle = {
-    fontSize: '2.5rem',
-    fontWeight: 'bold',
-    marginBottom: '8px'
   };
 
   const activityItemStyle = {
@@ -105,9 +115,7 @@ function PatientDashboard() {
     fontSize: '1.3rem'
   };
 
-  const glassStyle = {
- 
-  };
+
   return (
     <div className="container-fluid " >
       {/* Header Section */}
@@ -125,7 +133,7 @@ function PatientDashboard() {
                   />
                   <div>
                     <h2 className="mb-2">Welcome back {user.fullName} </h2>
-                    <p className="mb-1 opacity-75">Patient ID: P-12345 | Age: 35 | Blood Type: O+</p>
+                    <p className="mb-1 opacity-75">Patient ID: {(user._id).slice(-8)}</p>
                     <p className="mb-0 opacity-75">Last Visit:July 15, 2025 | Next Appointment: Aug 18, 2025</p>
                   </div>
                 </div>
@@ -274,16 +282,136 @@ function PatientDashboard() {
           </div>
 
           {/* Quick Actions */}
-          <div style={{...cardStyle, marginBottom: '20px'}}>
+          <div style={{marginBottom: '20px'}}>
             <h5 className="mb-3">
               <FaListAlt style={iconStyle} />
               Quick Actions
             </h5>
             <div className="d-grid gap-4">
-              <button className="btn btn-primary btn-lg" style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
+              <button className="btn btn-primary btn-lg" onClick={() => setShowForm(true)} style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
                 <FaCalendarAlt style={{marginRight: '8px'}} />
                 Book Appointment
               </button>
+              {showForm && (
+  <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 2000,
+    }}
+  >
+    <form
+      onSubmit={submitForm}
+      style={{
+        width: '450px',
+        padding: '30px',
+        borderRadius: '15px',
+        background: 'rgba(255, 255, 255, 0.15)',
+        backdropFilter: 'blur(15px)',
+        border: '1px solid rgba(255, 255, 255, 0.2)',
+        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+        color: '#fff',
+      }}
+    >
+      <h3 style={{ marginBottom: '20px', textAlign: 'center' }}>Book Appointment</h3>
+
+      <label style={{ display: 'block', marginBottom: '5px' }}>Speciality Required</label>
+      <select
+        value={speciality}
+        onChange={(e) => setSpeciality(e.target.value)}
+        required
+        style={{
+          width: '100%',
+          padding: '10px',
+          borderRadius: '8px',
+          marginBottom: '15px',
+          border: 'none',
+        }}
+      >
+        <option value="">Select</option>
+        <option value="Cardiology">Cardiology</option>
+        <option value="Neurology">Neurology</option>
+        <option value="Dermatology">Dermatology</option>
+      </select>
+
+      <label style={{ display: 'block', marginBottom: '5px' }}>Blood Type</label>
+      <input
+        type="text"
+        value={bloodType}
+        onChange={(e) => setBloodType(e.target.value)}
+        style={{
+          width: '100%',
+          padding: '10px',
+          borderRadius: '8px',
+          marginBottom: '15px',
+          border: 'none',
+        }}
+      />
+
+      <label style={{ display: 'block', marginBottom: '5px' }}>Reason</label>
+      <textarea
+        value={reason}
+        onChange={(e) => setReason(e.target.value)}
+        style={{
+          width: '100%',
+          padding: '10px',
+          borderRadius: '8px',
+          marginBottom: '15px',
+          border: 'none',
+          resize: 'none',
+          height: '80px',
+        }}
+      />
+
+      <label style={{ display: 'block', marginBottom: '5px' }}>Upload ID Card</label>
+      <input
+        type="file"
+        onChange={(e) => setIdCard(e.target.files[0])}
+        style={{
+          marginBottom: '20px',
+        }}
+      />
+
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <button
+          type="submit"
+          style={{
+            background: 'rgba(255, 255, 255, 0.3)',
+            border: 'none',
+            padding: '10px 20px',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            color: '#fff',
+          }}
+        >
+          Submit
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowForm(false)}
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: 'none',
+            padding: '10px 20px',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            color: '#fff',
+          }}
+        >
+          Close
+        </button>
+      </div>
+    </form>
+  </div>
+)}
+
               <button className="btn btn-primary btn-lg" style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
                 <FaFileAlt style={{marginRight: '8px'}} />
                 View Medical Records
