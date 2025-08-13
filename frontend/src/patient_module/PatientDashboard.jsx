@@ -27,7 +27,7 @@ function PatientDashboard() {
  //Booking appointment feature - nivesh 
   const [showForm, setShowForm] = useState(false);
   const [speciality, setSpeciality] = useState('');
-  const [bloodType, setBloodType] = useState('');
+  const [preferredDate, setpreferredDate] = useState('');
   const [reason, setReason] = useState('');
   const [idCard, setIdCard] = useState(null);
   const [appointments, setAppointments] = useState([]);
@@ -44,7 +44,7 @@ function PatientDashboard() {
     const formData = new FormData();
     formData.append("patientId", patientId);
     formData.append("speciality", speciality);
-    formData.append("bloodType", bloodType);
+    formData.append("preferredDate", preferredDate);
     formData.append("reason", reason);
     if (idCard) formData.append("idCard", idCard);
 
@@ -341,11 +341,11 @@ function PatientDashboard() {
         <option value="Dermatology">Dermatology</option>
       </select>
 
-      <label style={{ display: 'block', marginBottom: '5px' }}>Blood Type</label>
+      <label style={{ display: 'block', marginBottom: '5px' }}>Preferred date</label>
       <input
-        type="text"
-        value={bloodType}
-        onChange={(e) => setBloodType(e.target.value)}
+        type="date"
+        value={preferredDate}
+        onChange={(e) => setpreferredDate(e.target.value)}
         style={{
           width: '100%',
           padding: '10px',

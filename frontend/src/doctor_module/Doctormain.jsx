@@ -5,9 +5,12 @@ import { Outlet } from "react-router-dom";
 import Docsidebar from "./Docsidebar";
 import { doctor_back } from '../assets/imageAssets';
 import "./Doctormain.css";
+import Navbar from "../Elements/Navbar";
 
 function Doctormain() {
   return (
+    <>
+    <Navbar/>
     <div className="doctor-main-wrapper" style={{ display: "flex", minHeight: "100vh" }}>
       {/* Sidebar */}
       <div
@@ -30,22 +33,20 @@ function Doctormain() {
       {/* Right Content */}
       <div
         style={{
+          width: "100%",
           marginLeft: "250px",
-          flex: 1,
+          marginRight: 0,
           padding: "30px",
           minHeight: "100vh",
-          backgroundColor: "#cfe9e3",
-          backgroundImage: `radial-gradient(at 47% 33%, hsl(162, 77%, 40%) 0, transparent 59%), radial-gradient(at 82% 65%, hsl(198, 100%, 50%) 0, transparent 55%), url(${doctor_back})`,
-          backgroundRepeat: "no-repeat, no-repeat, no-repeat",
-          backgroundSize: "cover, cover, cover",
-          backgroundPosition: "center, center, center",
-          display: "flex",
-          flexDirection: "column",
+        backgroundColor: "#cfe9e3",
+        backgroundImage: "radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), radial-gradient(at 82% 65%, hsl(198.00, 100%, 50%) 0, transparent 55%)"
+
         }}
       >
         <Outlet /> {/* Renders the selected child route */}
       </div>
     </div>
+    </>
   );
 }
 

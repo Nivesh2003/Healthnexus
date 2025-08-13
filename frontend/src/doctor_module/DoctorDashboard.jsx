@@ -46,18 +46,21 @@ function DoctorDashboard() {
   
 
   const cardStyle = {
-    background: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: '16px',
+      backdropFilter: "blur(10px) saturate(180%)",
+   WebkitBackdropFilter: "blur(10px) saturate(180%)",
+   backgroundColor: "rgba(250, 252, 255, 0.53)",
+   borderRadius: "12px",
+   border: "1px solid rgba(247, 241, 241, 0.56)",
     padding: '24px',
-    WebkitBackdropFilter: 'blur(12px)',
-    border: '1px solid rgba(255, 255, 255, 0.2)',
-    boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-    color: 'white',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+    transition: 'all 0.3s ease'
   };
 
   const profileCardStyle = {
     ...cardStyle,
+     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     color: 'white'
+    ,border: 'none'
   };
 
   const profileImageStyle = {
@@ -99,7 +102,7 @@ function DoctorDashboard() {
                   />
                   <div>
                     <h2 className="mb-2" style={{color:"wheat"}}>Welcome back, {user.fullName} </h2>
-                    <p className="mb-1 opacity-75">Doctor ID: {(user._id).slice(-8)} | Email:{user.email} | Speciality:{user.speciality}</p>
+                    <p className="mb-1 opacity-100 ">Doctor ID: {(user._id).slice(-8)} | Email:{user.email} | Speciality:{user.speciality}</p>
                     {/* <p className="mb-0 opacity-75">Last Visit:July 15, 2025 | Next Appointment: Aug 18, 2025</p> */}
                   </div>
                 </div>
