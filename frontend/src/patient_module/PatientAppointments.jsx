@@ -12,6 +12,19 @@ import axios from 'axios';
 
 function PatientAppointments() {
  
+
+  function cancelAppointment(id) {
+    axios.delete(`http://localhost:8000/api/appointments/${id}`)
+      .then(res => {
+        alert(res.data.msg);
+        // refresh data if needed
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error deleting appointment");
+      });
+  }
+  
  //Appointment booking feature - nivesh
  const [appointments, setAppointments] = useState([]);
  const patientId = sessionStorage.getItem("userId");
@@ -97,6 +110,14 @@ function PatientAppointments() {
         <small className="text-muted">Status:</small>
         <div className="fw-bold">{appointment.status}</div>
       </div>
+    </div>
+    <div className="mt-2">
+      <button
+        className="btn btn-danger btn-sm"
+        onClick={() => cancelAppointment(appointment._id)}
+      >
+        Cancel Appointment
+      </button>
     </div>
   </div>
 ))}
