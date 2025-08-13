@@ -15,7 +15,7 @@ const upload = multer({ storage });
 // Patient sends appointment request to ALL doctors of a speciality
 AppointmentRouter.post('/create', upload.single('idCard'), async (req, res) => {
   try {
-    const { patientId, speciality, bloodType, reason } = req.body;
+    const { patientId, speciality, preferredDate, reason } = req.body;
 
     // Find all doctors with the given speciality
     const doctors = await User.find({ speciality, type: 'doctor' });
@@ -30,7 +30,7 @@ AppointmentRouter.post('/create', upload.single('idCard'), async (req, res) => {
     const appointment = new Appointment({
       patientId,
       speciality,
-      bloodType,
+      preferredDate,
       reason,
       idCard: req.file ? req.file.path : null,
       requestedDoctorIds: doctorIds,
@@ -72,7 +72,8 @@ AppointmentRouter.put('/:id/respond', async (req, res) => {
       return res.status(400).json({ error: "doctorId is required in request body" });
     }
 
-    const appointment = await Appointment.findById(req.params.id);
+    const appointment = await Appointment.findById(req.params.id)
+      .populate('patientId', 'fullName email'); // added populate to get patient email
     if (!appointment) return res.status(404).json({ error: "Appointment not found" });
 
     if (status === 'accepted') {
@@ -83,6 +84,31 @@ AppointmentRouter.put('/:id/respond', async (req, res) => {
       // Clear requestedDoctorIds since one doctor accepted
       appointment.requestedDoctorIds = [];
       await appointment.save();
+
+      // ----------------- Email Sending Feature -----------------
+      const nodemailer = require('nodemailer');
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
+        }
+      });
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: appointment.patientId.email,
+        subject: 'Your Appointment Has Been Accepted',
+        text: `Hello ${appointment.patientId.fullName},\n\nYour appointment request has been accepted.\nDate: ${appointmentDate}\n\nRegards,\nClinic Team`
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending email:', error);
+        } else {
+          console.log('Email sent:', info.response);
+        }
+      });
+      // ----------------------------------------------------------
+
       return res.json(appointment);
     }
 
@@ -105,6 +131,7 @@ AppointmentRouter.put('/:id/respond', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 // Patient sees all their appointments
 AppointmentRouter.get('/patient/:patientId', async (req, res) => {
@@ -137,7 +164,7 @@ AppointmentRouter.get('/doctor/:doctorId/accepted', async (req, res) => {
     const appointments = await Appointment.find({
       acceptedDoctorId: req.params.doctorId,
       status: 'accepted'
-    }).populate('patientId', 'fullName bloodType email');
+    }).populate('patientId', 'fullName preferredDate email');
 
     res.json(appointments);
   } catch (err) {
@@ -146,3 +173,62 @@ AppointmentRouter.get('/doctor/:doctorId/accepted', async (req, res) => {
 });
 
 module.exports = AppointmentRouter;
+
+
+//Cancel Appointment
+AppointmentRouter.delete('/:id', async (req, res) => {
+  try {
+    const appointment = await Appointment.findById(req.params.id)
+      .populate('patientId', 'fullName email')
+      .populate('acceptedDoctorId', 'fullName email');
+
+    if (!appointment) {
+      return res.status(404).json({ error: "Appointment not found" });
+    }
+
+    // Store details before deletion (because findByIdAndDelete removes it)
+    const patient = appointment.patientId;
+    const doctor = appointment.acceptedDoctorId;
+
+    await appointment.deleteOne();
+
+    // ----------------- Email Sending Feature -----------------
+    const nodemailer = require('nodemailer');
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    let recipientEmail, subject, body;
+
+    if (doctor) {
+      // Email patient if doctor cancels
+      recipientEmail = patient.email;
+      subject = 'Your Appointment Has Been Cancelled';
+      body = `Hello ${patient.fullName},\n\nYour appointment with Dr. ${doctor.fullName} has been cancelled.\n\nRegards,\nClinic Team`;
+    } else {
+      // Email doctor if patient cancels
+      recipientEmail = doctor?.email;
+      subject = 'Appointment Cancelled by Patient';
+      body = `Hello Dr. ${doctor?.fullName},\n\nThe patient ${patient.fullName} has cancelled their appointment.\n\nRegards,\nClinic Team`;
+    }
+
+    if (recipientEmail) {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: recipientEmail,
+        subject,
+        text: body
+      });
+    }
+    // ----------------------------------------------------------
+
+    res.json({ msg: "Appointment deleted and email sent successfully" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});

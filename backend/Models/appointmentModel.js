@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const appointmentSchema = new mongoose.Schema({
     patientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     speciality: String,
-    bloodType: String,
+    preferredDate: Date,
     reason: String,
     idCard: String,
     status: { type: String, enum: ['pending', 'accepted', 'rejected'], default: 'pending' },

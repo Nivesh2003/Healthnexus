@@ -38,13 +38,24 @@ function DoctorAppointments() {
       });
       if (res.status === 200) {
         alert(`Appointment ${status} successfully!`);
+        alert(`Email has been sent to the patient`);
       }
       window.location.reload();
     } catch (err) {
       alert(`Failed to update appointment: ${err.response?.data?.error || err.message}`);
     }
   };
-  
+  function cancelAppointment(id) {
+    axios.delete(`http://localhost:8000/api/appointments/${id}`)
+      .then(res => {
+        alert(res.data.msg);
+        // refresh data if needed
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Error deleting appointment");
+      });
+  }
 
 
   const cardStyle = {
@@ -111,33 +122,33 @@ function DoctorAppointments() {
           <div style={cardStyle}>
             <h5 className="mb-3">
               <FontAwesomeIcon icon={faCalendarAlt} style={iconStyle} />
-              Upcoming Appointments
+              Pending Appointments
             </h5>
             
             {pendingAppointments.map(a => (
     <div key={a._id} style={urgentStyle} className="mb-3">
       <div className="d-flex justify-content-between align-items-start mb-2">
         <div>
-          <h6 className="mb-1 text-danger">{a.reason}</h6>
+          <h6 className="mb-1 text-danger">REASON : {a.reason}</h6>
           <p className="text-muted mb-1">
-            Patient: {a.patientId?.fullName} | Blood Type: {a.bloodType}
+            <b>Patient: {a.patientId?.fullName}</b>
           </p>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-md-4">
-          <small className="text-muted">Date:</small>
+          <small className="text-muted">Preferred Date:</small>
           <div className="fw-bold">
-            {new Date(a.date).toLocaleDateString()}
+          {a.preferredDate}
           </div>
         </div>
-        <div className="col-md-4">
+        {/* <div className="col-md-4">
           <small className="text-muted">Time:</small>
           <div className="fw-bold">
             {a.time || 'N/A'}
           </div>
-        </div>
+        </div> */}
         <div className="col-md-4 d-flex gap-2 align-items-center">
           <button
             className="btn btn-sm btn-success"
@@ -162,7 +173,7 @@ function DoctorAppointments() {
           <div style={cardStyle}>
             <h5 className="mb-3">
               <FontAwesomeIcon icon={faFileAlt} style={iconStyle} />
-              Past Appointments
+              Upcoming Appointments
             </h5>
             
             {acceptedAppointments.map(a => (
@@ -188,7 +199,7 @@ function DoctorAppointments() {
         <div className="col-md-6 d-flex align-items-center">
           <button
             className="btn btn-danger btn-sm"
-            // onClick={() => cancelAppointment(a._id)}
+            onClick={() => cancelAppointment(a._id)}
           >
             Cancel
           </button>
