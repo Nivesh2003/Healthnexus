@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import '../../src/App.css'
-import { checkup, doctor, opinion, sliderImages } from '../assets/imageAssets'
 import { Accordion, Container, Row, Col, Card } from 'react-bootstrap';
 import Chatbot from '../Elements/Chatbot'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -142,9 +141,9 @@ function Home() {
                                         />
                                     </div>
                                 </div>
-                                <div className='col-lg-3 col-md-4'>
-                                    <div className='appointment-booking-btn h-100 rounded d-flex align-items-center justify-content-center text-white fw-bold'
-                                        >
+                                 <div className='col-lg-3 col-md-4'>
+                                    <div className='h-100 rounded d-flex align-items-center justify-content-center text-white fw-bold'
+                                        style={{ backgroundColor: '#0b8aa3ff', minHeight: '70px', borderRadius: '0 0.25rem 0.25rem 0', fontSize: '20px' }}>
                                         Book an Appointment
                                     </div>
                                 </div>
@@ -174,7 +173,7 @@ function Home() {
                     <Link to="/medicine" style={{ textDecoration: 'none' }}>
                         <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto' style={{ maxWidth: '250px', minHeight: '150px' }}>
                             <img src="./src/assets/images/doctor-gym.gif" alt="Second Opinion" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
-                            <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Awareness</h6>
+                            <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Medicine</h6>
                         </div>
                         </Link>
                     </div>
@@ -253,7 +252,7 @@ function Home() {
 
             <div className="departments-bg py-5">
                 <div className="container text-center">
-                    <h2 className="mb-4 text-white">OUR FACALITIES</h2>
+                    <h2 className="mb-4 text-dark">OUR FACALITIES</h2>
                     <div className="d-flex justify-content-center flex-wrap gap-3">
                         <div className="card department-card px-3 py-4">
                             <a href="" className='facalities-a-tag'>
@@ -333,7 +332,7 @@ function Home() {
 
             <div className="patient-review-section container my-5">
                 <div className="patient-review text-center mb-4 pt-4">
-                    <h2 style={{color:'white',fontFamily:"monospace",fontSize:'xxx-large'}}>What Our Patients Says</h2>
+                    <h2 style={{color:'black',fontFamily:"monospace",fontSize:'xxx-large'}}>What Our Patients Says</h2>
                 </div>
 
                 <div className="row">

@@ -17,7 +17,7 @@ const LabTestList = () => {
             <img
               src={imageMap[test.image] || test.image}
               alt={test.name}
-              style={{width: 200, height: "auto"}}
+              style={{width: 200, height: "auto", borderRadius: 10}}
             />
             <p>{test.description}</p>
             <p>Price: ₹{test.price}</p>

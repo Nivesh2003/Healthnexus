@@ -36,17 +36,19 @@ export default function Home() {
           </div>
           <HeroCarousel />
 
-          <h5 className="mb-3">Recommended Tests</h5>
-          <div className="row g-3">
+          <h2 className="mb-4 fw-bold mt-4" style={{letterSpacing: '1px'}}>Recommended Tests</h2>
+          <div className="row gy-4">
             {filtered.map(test => (
-              <div key={test._id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-                <TestCard
-                  test={{
-                    ...test,
-                    image: [`http://localhost:8000/public/image/labtest/${test.imageUrl}`]
-                  }}
-                  onBook={() => setSelectedTest(test)}
-                />
+              <div key={test._id} className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div className="p-3 bg-white rounded shadow-sm h-100">
+                  <TestCard
+                    test={{
+                      ...test,
+                      image: [`http://localhost:8000/public/image/labtest/${test.imageUrl}`]
+                    }}
+                    onBook={() => setSelectedTest(test)}
+                  />
+                </div>
               </div>
             ))}
           </div>

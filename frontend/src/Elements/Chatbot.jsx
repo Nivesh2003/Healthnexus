@@ -8,8 +8,16 @@ function Chatbot() {
   const [messages, setMessages] = useState([
     {
       sender: 'bot',
-      text: 'Hi, how can I help you ?'
-    }
+      text: 'Hi'
+    },
+    {
+      sender: 'bot',
+      text:'How can i help you?'
+    },
+    {
+      sender: 'bot',
+      text: 'I am here to assist you'
+    },
   ]);
   const chatBodyRef = useRef(null);
   // Auto-scroll to bottom when messages change
@@ -18,6 +26,14 @@ function Chatbot() {
       chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
     }
   }, [messages, chatOpen]);
+  useEffect(()=>{
+    if(!chatOpen){
+      const timer=setTimeout(()=>{
+        setChatOpen(true);
+      },10000);
+      return()=>clearTimeout(timer);
+    }
+  },[]);
 
 
   const [newMessage, setNewMessage] = useState('');
@@ -61,7 +77,11 @@ function Chatbot() {
         <div className='chat-footer'>
           <input type="text" value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder='Type your message...' />
+            placeholder='Type your message...' onKeyDown={(e)=>{
+              if(e.key==='Enter'){
+                handleSendMessage();
+              }
+            }} />
           <button onClick={handleSendMessage}>Send</button>
         </div>
       </div>

@@ -24,6 +24,7 @@ import Medicineadd from './Admin/Medicineadd'
 import Dashboard from './Admin/Dashboard'
 import LabTestAdd from './Admin/LabTestAdd'
 import Medicine from './Medicine/Medicine'
+import Chatbot from './Admin/Chatbot'
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="Medicineadd" element={<Medicineadd />} />
             <Route path="Dashboard" element={<Dashboard />} />
+            <Route path="Chatbot" element={<Chatbot />} />
             <Route path="LabTestAdd" element={<LabTestAdd />} />
           </Route>
 

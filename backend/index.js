@@ -11,8 +11,7 @@ const medicineRoute = require('./Routes/Addmedi');
 const multur = require('./config/multerconfig')
 const path = require('path');
 const AppointmentRouter = require('./Routes/appointmentRoutes');
-
-
+const questionRoute = require('./Routes/questionRoutes');
 
 dotenv.config();
 app.use(express.json());
@@ -25,6 +24,7 @@ app.use('/public', express.static('public'));
 app.use('/api/users', userRoute); // All users routes
 app.use("/api/appointments", AppointmentRouter); //Appointment booking route
 app.use('/chat', chatbot);
+app.use('/api/questions',questionRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
