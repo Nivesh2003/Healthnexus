@@ -25,6 +25,7 @@ app.use('/api/users', userRoute); // All users routes
 app.use("/api/appointments", AppointmentRouter); //Appointment booking route
 app.use('/chat', chatbot);
 app.use('/api/questions',questionRoute);
+app.use('/image/users', express.static('public/image/users'));
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

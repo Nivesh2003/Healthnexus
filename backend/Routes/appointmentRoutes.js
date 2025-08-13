@@ -12,6 +12,39 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+//PAtient books specific doctor --nivesh 
+AppointmentRouter.post('/create/specific', async (req, res) => {
+  try {
+    const { patientId, doctorId, preferredDate, preferredTime, reason } = req.body;
+
+    // Ensure doctor exists
+    const doctor = await User.findById(doctorId);
+    if (!doctor || doctor.type !== 'doctor') {
+      return res.status(404).json({ msg: "Doctor not found" });
+    }
+
+    // Create appointment for this single doctor
+    const appointment = new Appointment({
+      patientId,
+      speciality: doctor.speciality,
+      preferredDate,
+      reason,
+      requestedDoctorIds: [doctorId],
+      acceptedDoctorId: null,
+      status: 'pending',
+      appointmentDate: null,
+      preferredTime
+    });
+
+    await appointment.save();
+
+    res.json({ msg: "Appointment request sent to doctor", appointment });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Patient sends appointment request to ALL doctors of a speciality
 AppointmentRouter.post('/create', upload.single('idCard'), async (req, res) => {
   try {
