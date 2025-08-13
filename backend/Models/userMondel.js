@@ -18,7 +18,15 @@ userSchema = mongoose.Schema({
     "speciality": {
         type: String,
         default: null
-    }
+    },
+    "d_id":{
+        type:String,
+        default:null
+    },
+    image: {
+        type: String, // store file path or filename
+        default: null
+      }
 });
 const User = mongoose.model('User', userSchema);
 module.exports = User;
