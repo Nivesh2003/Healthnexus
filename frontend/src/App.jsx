@@ -25,6 +25,7 @@ import Dashboard from './Admin/Dashboard'
 import LabTestAdd from './Admin/LabTestAdd'
 import Medicine from './Medicine/Medicine'
 import Chatbot from './Admin/Chatbot'
+import Blog from './Blog/Blog'
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
           <Route path="/medicine" element={<Medicine />} />
           <Route path="/find-doctor" element={<AppointmentPage />} />
           <Route path="/bmi" element={<BMIcalculator/>} />
-            <Route path="/bodyfat" element={<BodyFatcalculator/>} />
+          <Route path="/bodyfat" element={<BodyFatcalculator/>} />
+          <Route path="/blog" element={<Blog />} />
 
           {/* Admin routes */}
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}>

@@ -30,7 +30,7 @@ function Chatbot() {
     if(!chatOpen){
       const timer=setTimeout(()=>{
         setChatOpen(true);
-      },10000);
+      },6000);
       return()=>clearTimeout(timer);
     }
   },[]);

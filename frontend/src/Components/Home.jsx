@@ -5,6 +5,10 @@ import Chatbot from '../Elements/Chatbot'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from '../Elements/Footer';
 import Navbar from '../Elements/Navbar';
+import b1 from '../assets/images/blog1.png';
+import b2 from '../assets/images/blog2.png';
+import b3 from '../assets/images/blog3.png';
+import b4 from '../assets/images/blog4.png';
 
 const faqData = {
     "Q. General Questions": [
@@ -49,33 +53,9 @@ const PatientsReviews = [
         img: "./src/assets/images/patient5.png",
     },
 ];
-   const blogs = [
-  {
-    title: 'Understanding Blood Cancer & Its Symptoms',
-    desc: 'Cancer means uncontrolled growth of...',
-    image: './src/assets/images/blog1.png',
-  },
-  {
-    title: 'Migraine headache: Symptoms, Home Remedies, and Treatment',
-    desc: '',
-    image: './src/assets/images/blog2.png',
-  },
-  {
-    title: 'Lung Cancer Symptoms: Everything You Need to Know',
-    desc: 'Lung cancer is a severe form of cancer...',
-    image: './src/assets/images/blog3.png',
-  },
-  {
-    title: 'Breast Cancer Symptoms: Early Detection Is Key to Effective...',
-    desc: 'Breast cancer demands early detection...',
-    image: './src/assets/images/blog4.png',
-  },
-];
 
 function Home() {
     return (
-
-
         <>
         <Navbar/>
         <div>
@@ -407,20 +387,51 @@ function Home() {
        
       </Row>
       <Row xs={1} md={2} lg={4} className="g-4">
-        {blogs.map((blog, index) => (
-          <Col key={index}>
+       <Link to={"/blog"}><Col>
             <Card className="h-100 shadow-sm">
-              <Card.Img variant="top" src={blog.image} />
+              <Card.Img variant="top" src={b1} />
               <Card.Body>
-                <Card.Title className="fs-6">{blog.title}</Card.Title>
-                <Card.Text className="text-muted">{blog.desc}</Card.Text>
+                <Card.Title className="fs-6">Understanding Blood Cancer & Its Symptoms</Card.Title>
+                <Card.Text className="text-muted">Cancer means uncontrolled growth of...</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col></Link>
+
+          <Link to={"/blog"}><Col>
+            <Card className="h-100 shadow-sm">
+              <Card.Img variant="top" src={b2} />
+              <Card.Body>
+                <Card.Title className="fs-6">Migraine headache: Symptoms, Home Remedies, and Treatment</Card.Title>
+                <Card.Text className="text-muted">Migraine means uncontrolled growth of...</Card.Text>
               </Card.Body>
             </Card>
           </Col>
-        ))}
-        
+</Link>
+
+ <Link to={"/blog"}>
+        <Col>
+            <Card className="h-100 shadow-sm">
+              <Card.Img variant="top" src={b3} />
+              <Card.Body>
+                <Card.Title className="fs-6">Lung Cancer Symptoms: Everything You Need to Know</Card.Title>
+                <Card.Text className="text-muted">Lung cancer is a severe form of cancer...</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+</Link>
+ <Link to={"/blog"}>
+          <Col>
+            <Card className="h-100 shadow-sm">
+              <Card.Img variant="top" src={b4} />
+              <Card.Body>
+                <Card.Title className="fs-6">Breast Cancer Symptoms: Early Detection Is Key to Effective...</Card.Title>
+                <Card.Text className="text-muted">Breast cancer demands early detection...</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+  </Link>
       </Row>
-  
+
     </Container>
 
         </div>
