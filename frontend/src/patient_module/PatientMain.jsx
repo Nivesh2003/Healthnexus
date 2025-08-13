@@ -1,10 +1,12 @@
 import React from "react";
 import Sidebar from "./PatientSidebar";
 import { Outlet } from "react-router-dom";
+import Navbar from "../Elements/Navbar";
 
 function PatientMain() {
   return (
     <>
+    <Navbar/>
       {/* Sidebar */}
       <div
         style={{
