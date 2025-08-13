@@ -43,6 +43,11 @@ function Adminleft() {
                     <Link to="LabTestAdd" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
                       Add Lab Test
                     </Link>
+                    </li>
+                    <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>
+                    <Link to="Chatbot" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
+                      Chatbot
+                    </Link>
                   </li>
                 </ul>
                   {/* Footer */}
