@@ -25,8 +25,8 @@ function Navbar() {
                         {/* Logo section */}
                         <Link to={'/'}>
                         <div className="navbar-brand d-flex align-items-center">
-                            <img src={brandImages.rightImg} alt="Logo" className="me-2" style={{height: '50px'}} />
-                            <img src={brandImages.logo} alt="Logo GIF" style={{height: '40px'}} />
+                            <img src={brandImages.rightImg} alt="Logo" className="me-2" style={{height: '50px',width:'50px'}} />
+                            <img src={brandImages.logo} alt="Logo GIF" style={{height: '40px',width:'183px'}} />
                         </div>
                         </Link>
                         {/* Mobile toggle button */}
@@ -62,6 +62,10 @@ function Navbar() {
                                         <li><Link to={'/bmi'} className='dropdown-item'>BMI calculator</Link></li>
                                         <li><Link to={'/bodyfat'} className='dropdown-item'>Body Fat calculator</Link></li>
                                     </ul>
+                                    
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link text-primary fw-semibold" to="">Blogs</Link>
                                 </li>
                                
                                 {/* <li className="nav-item dropdown">
@@ -77,7 +81,7 @@ function Navbar() {
                                 </li> */}
 
                                 <li className='nav-item'>
-                                    <Link to={'/login'} className='fw-semibold btn btn-outline-primary mx-2'>Login/Register</Link>
+                                    <Link to={'/login'} className='fw-semibold rounded-3 btn btn-outline-primary mx-2'>Login/Register</Link>
 
                                 </li>
                             </ul>

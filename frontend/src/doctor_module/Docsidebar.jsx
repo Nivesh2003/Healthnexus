@@ -86,7 +86,7 @@ function Docsidebar() {
   const menuItems = [
     { path: '/doctor-login/doctor-main', label: 'Dashboard', icon: faChartBar },
     { path: '/doctor-login/appointments', label: 'Appointments', icon: faCalendarAlt },
-    { path: '/doctor-login/doctor-records', label: 'Records', icon: faFileAlt },
+    // { path: '/doctor-login/doctor-records', label: 'Records', icon: faFileAlt },
     // { path: '/doctor-login/prescriptions', label: 'Prescriptions', icon: faPills }
   ];
 
