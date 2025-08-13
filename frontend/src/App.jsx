@@ -21,11 +21,13 @@ import PatientAppointments from './patient_module/PatientAppointments'
 import Prescriptions from './patient_module/Prescriptions'
 import Admin from './Admin/Admin'
 import Medicineadd from './Admin/Medicineadd'
-import Dashboard from './Admin/Dashboard'
 import LabTestAdd from './Admin/LabTestAdd'
 import Medicine from './Medicine/Medicine'
 import Chatbot from './Admin/Chatbot'
 import Blog from './Blog/Blog'
+import DoctorAdd from './Admin/AddDoctor'
+import ViewLab from './Admin/ViewLab';
+import Viewmedi from './Admin/Viewmedi';
 
 
 function App() {
@@ -45,9 +47,11 @@ function App() {
 
           {/* Admin routes */}
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}>
-            <Route index element={<Dashboard />} />
+            <Route index element={<DoctorAdd />} />
             <Route path="Medicineadd" element={<Medicineadd />} />
-            <Route path="Dashboard" element={<Dashboard />} />
+            <Route path="LabTestView" element={<ViewLab />} />
+            <Route path="MedicineView" element={<Viewmedi />} />
+            <Route path="DoctorAdd" element={<DoctorAdd />} />
             <Route path="Chatbot" element={<Chatbot />} />
             <Route path="LabTestAdd" element={<LabTestAdd />} />
           </Route>

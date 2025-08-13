@@ -30,8 +30,8 @@ function Adminleft() {
                 <h2 style={{fontWeight: 700, letterSpacing: '2px', marginBottom: '2rem'}}>Admin Panel</h2>
                 <ul style={{listStyle: 'none', padding: 0, width: '100%'}}>
                   <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>
-                    <Link to="/admin" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
-                      Dashboard
+                    <Link to="DoctorAdd" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
+                      Add Doctor
                     </Link>
                   </li>
                   <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>
@@ -39,9 +39,19 @@ function Adminleft() {
                       Add Medical Items
                     </Link>
                   </li>
+                   <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>
+                    <Link to="MedicineView" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
+                      View Medical Items
+                    </Link>
+                  </li>
                   <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>
                     <Link to="LabTestAdd" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
                       Add Lab Test
+                    </Link>
+                    </li>
+                    <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>
+                    <Link to="LabTestView" style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}>
+                      View Lab Test
                     </Link>
                     </li>
                     <li style={{padding: '12px 0', textAlign: 'center', borderRadius: '8px', marginBottom: '8px', background: 'rgba(255,255,255,0.05)', cursor: 'pointer', transition: 'background 0.2s'}}>

@@ -2,12 +2,13 @@ import React from 'react'
 import Adminleft from './Adminleft'
 import { Outlet } from 'react-router-dom'
 import './admin.css'
+import { useEffect } from 'react';
 function Admin() {
   // Check if Outlet has rendered a child route
   const outletRef = React.useRef(null);
   const [hasContent, setHasContent] = React.useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (outletRef.current && outletRef.current.innerHTML.trim() !== "") {
       setHasContent(true);
     } else {

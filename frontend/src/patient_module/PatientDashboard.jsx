@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { 
-  FaUser, 
-  FaWeight, 
-  FaHeartbeat, 
-  FaChartLine, 
+import {
+  FaUser,
+  FaWeight,
+  FaHeartbeat,
+  FaChartLine,
   FaListAlt,
   FaArrowUp,
   FaArrowDown,
@@ -24,7 +24,7 @@ import axios from 'axios';
 
 function PatientDashboard() {
 
- //Booking appointment feature - nivesh 
+  //Booking appointment feature - nivesh 
   const [showForm, setShowForm] = useState(false);
   const [speciality, setSpeciality] = useState('');
   const [preferredDate, setpreferredDate] = useState('');
@@ -55,9 +55,9 @@ function PatientDashboard() {
 
 
 
- //Fetching data from user collections
+  //Fetching data from user collections
   const [user, setUser] = useState("");
- 
+
   useEffect(() => {
     async function fetchUserData() {
       try {
@@ -74,13 +74,13 @@ function PatientDashboard() {
   if (!user) {
     return <p>Loading...</p>;
   }
-  
+
   const cardStyle = {
-  backdropFilter: "blur(10px) saturate(180%)",
-   WebkitBackdropFilter: "blur(10px) saturate(180%)",
-   backgroundColor: "rgba(250, 252, 255, 0.53)",
-   borderRadius: "12px",
-   border: "1px solid rgba(247, 241, 241, 0.56)",
+    backdropFilter: "blur(10px) saturate(180%)",
+    WebkitBackdropFilter: "blur(10px) saturate(180%)",
+    backgroundColor: "rgba(250, 252, 255, 0.53)",
+    borderRadius: "12px",
+    border: "1px solid rgba(247, 241, 241, 0.56)",
     padding: '24px',
     boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
     transition: 'all 0.3s ease'
@@ -90,7 +90,7 @@ function PatientDashboard() {
     ...cardStyle,
     background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     color: 'white'
-    ,border: 'none'
+    , border: 'none'
   };
 
   const profileImageStyle = {
@@ -120,14 +120,14 @@ function PatientDashboard() {
     <div className="container-fluid " >
       {/* Header Section */}
       <div className="row mb-4">
-        <div className="col-12" style={{border:"none"}}>
+        <div className="col-12" style={{ border: "none" }}>
           <div style={profileCardStyle}>
             <div className="row align-items-center">
               <div className="col-md-8">
                 <div className="d-flex align-items-center">
-                  <img 
-                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?cs=srgb&dl=pexels-italo-melo-881954-2379004.jpg&fm=jpg" 
-                    alt="Patient" 
+                  <img
+                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?cs=srgb&dl=pexels-italo-melo-881954-2379004.jpg&fm=jpg"
+                    alt="Patient"
                     style={profileImageStyle}
                     className="me-4"
                   />
@@ -143,10 +143,10 @@ function PatientDashboard() {
                   <span className="badge  text-white mb-2">Active Patient</span>
                   <div className="d-flex gap-2">
                     <button className="btn btn-outline-light btn-sm">
-                      <FaBell style={{marginRight: '4px'}} />
+                      <FaBell style={{ marginRight: '4px' }} />
                       Notifications
                     </button>
-                   
+
                   </div>
                 </div>
               </div>
@@ -155,23 +155,23 @@ function PatientDashboard() {
         </div>
       </div>
 
-     
+
       {/* Main Content Row */}
-      <div className="row g-4 " style={{alignItems: 'stretch'}}>
+      <div className="row g-4 " style={{ alignItems: 'stretch' }}>
         {/* Left Column - Recent Activity */}
         <div className="col-lg-8">
-          <div style={{...cardStyle, height: '100%'}}>
+          <div style={{ ...cardStyle, height: '100%' }}>
             <div className="d-flex justify-content-between align-items-center mb-4">
               <h5 className="mb-0">
                 <FaListAlt style={iconStyle} />
                 Recent Activity
               </h5>
             </div>
-            
+
             <div>
               <div style={activityItemStyle}>
-                <div className="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '40px', height: '40px', fontSize: '1rem'}}>
+                <div className="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '40px', height: '40px', fontSize: '1rem' }}>
                   <FaFileAlt />
                 </div>
                 <div className="flex-grow-1">
@@ -183,8 +183,8 @@ function PatientDashboard() {
               </div>
 
               <div style={activityItemStyle}>
-                <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '40px', height: '40px', fontSize: '1rem'}}>
+                <div className="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '40px', height: '40px', fontSize: '1rem' }}>
                   <FaCalendarAlt />
                 </div>
                 <div className="flex-grow-1">
@@ -196,8 +196,8 @@ function PatientDashboard() {
               </div>
 
               <div style={activityItemStyle}>
-                <div className="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '40px', height: '40px', fontSize: '1rem'}}>
+                <div className="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '40px', height: '40px', fontSize: '1rem' }}>
                   <FaPills />
                 </div>
                 <div className="flex-grow-1">
@@ -209,8 +209,8 @@ function PatientDashboard() {
               </div>
 
               <div style={activityItemStyle}>
-                <div className="bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '40px', height: '40px', fontSize: '1rem'}}>
+                <div className="bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '40px', height: '40px', fontSize: '1rem' }}>
                   <FaStethoscope />
                 </div>
                 <div className="flex-grow-1">
@@ -222,8 +222,8 @@ function PatientDashboard() {
               </div>
 
               <div style={activityItemStyle}>
-                <div className="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '40px', height: '40px', fontSize: '1rem'}}>
+                <div className="bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '40px', height: '40px', fontSize: '1rem' }}>
                   <FaBell />
                 </div>
                 <div className="flex-grow-1">
@@ -240,15 +240,15 @@ function PatientDashboard() {
         {/* Right Column - Quick Actions & Stats */}
         <div className="col-lg-4 ">
           {/* Today's Schedule */}
-          <div style={{...cardStyle, marginBottom: '20px'}}>
+          <div style={{ ...cardStyle, marginBottom: '20px' }}>
             <h5 className="mb-3">
               <FaClock style={iconStyle} />
               Today's Schedule
             </h5>
             <div>
-              <div className="d-flex align-items-center mb-3 p-3" style={{backgroundColor: '#e7ffedff', borderRadius: '8px'}}>
-                <div className="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '35px', height: '35px', fontSize: '0.9rem'}}>
+              <div className="d-flex align-items-center mb-3 p-3" style={{ backgroundColor: '#e7ffedff', borderRadius: '8px' }}>
+                <div className="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
                   <FaCheckCircle />
                 </div>
                 <div className="flex-grow-1">
@@ -257,9 +257,9 @@ function PatientDashboard() {
                 </div>
               </div>
 
-              <div className="d-flex align-items-center mb-3 p-3" style={{backgroundColor: '#fff3cd', borderRadius: '8px'}}>
-                <div className="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '35px', height: '35px', fontSize: '0.9rem'}}>
+              <div className="d-flex align-items-center mb-3 p-3" style={{ backgroundColor: '#fff3cd', borderRadius: '8px' }}>
+                <div className="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
                   <FaClock />
                 </div>
                 <div className="flex-grow-1">
@@ -268,9 +268,9 @@ function PatientDashboard() {
                 </div>
               </div>
 
-              <div className="d-flex align-items-center p-3" style={{backgroundColor: '#f8d7da', borderRadius: '8px'}}>
-                <div className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3" 
-                     style={{width: '35px', height: '35px', fontSize: '0.9rem'}}>
+              <div className="d-flex align-items-center p-3" style={{ backgroundColor: '#f8d7da', borderRadius: '8px' }}>
+                <div className="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                  style={{ width: '35px', height: '35px', fontSize: '0.9rem' }}>
                   <FaExclamationTriangle />
                 </div>
                 <div className="flex-grow-1">
@@ -282,146 +282,146 @@ function PatientDashboard() {
           </div>
 
           {/* Quick Actions */}
-          <div style={{marginBottom: '20px'}}>
+          <div style={{ marginBottom: '20px' }}>
             <h5 className="mb-3">
               <FaListAlt style={iconStyle} />
               Quick Actions
             </h5>
             <div className="d-grid gap-4">
-              <button className="btn btn-primary btn-lg" onClick={() => setShowForm(true)} style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
-                <FaCalendarAlt style={{marginRight: '8px'}} />
+              <button className="btn btn-primary btn-lg" onClick={() => setShowForm(true)} style={{ border: "1px solid rgba(247, 241, 241, 0.56)" }}>
+                <FaCalendarAlt style={{ marginRight: '8px' }} />
                 Book Appointment
               </button>
               {showForm && (
-  <div
-    style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: 2000,
-    }}
-  >
-    <form
-      onSubmit={submitForm}
-      style={{
-        width: '450px',
-        padding: '30px',
-        borderRadius: '15px',
-        background: 'rgba(255, 255, 255, 0.15)',
-        backdropFilter: 'blur(15px)',
-        border: '1px solid rgba(255, 255, 255, 0.2)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-        color: '#fff',
-      }}
-    >
-      <h3 style={{ marginBottom: '20px', textAlign: 'center' }}>Book Appointment</h3>
+                <div
+                  style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    zIndex: 2000,
+                  }}
+                   >
+                  <form
+                    onSubmit={submitForm}
+                    style={{
+                      width: '450px',
+                      padding: '30px',
+                      borderRadius: '15px',
+                      background: 'rgba(255, 255, 255, 0.15)',
+                      backdropFilter: 'blur(15px)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                      color: '#fff',
+                    }}
+                  >
+                    <h3 style={{ marginBottom: '20px', textAlign: 'center' }}>Book Appointment</h3>
 
-      <label style={{ display: 'block', marginBottom: '5px' }}>Speciality Required</label>
-      <select
-        value={speciality}
-        onChange={(e) => setSpeciality(e.target.value)}
-        required
-        style={{
-          width: '100%',
-          padding: '10px',
-          borderRadius: '8px',
-          marginBottom: '15px',
-          border: 'none',
-        }}
-      >
-        <option value="">Select</option>
-        <option value="Cardiology">Cardiology</option>
-        <option value="Neurology">Neurology</option>
-        <option value="Dermatology">Dermatology</option>
-      </select>
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Speciality Required</label>
+                    <select
+                      value={speciality}
+                      onChange={(e) => setSpeciality(e.target.value)}
+                      required
+                      style={{
+                        width: '100%',
+                        padding: '10px',
+                        borderRadius: '8px',
+                        marginBottom: '15px',
+                        border: 'none',
+                      }}
+                    >
+                      <option value="">Select</option>
+                      <option value="Cardiology">Cardiology</option>
+                      <option value="Neurology">Neurology</option>
+                      <option value="Dermatology">Dermatology</option>
+                    </select>
 
-      <label style={{ display: 'block', marginBottom: '5px' }}>Preferred date</label>
-      <input
-        type="date"
-        value={preferredDate}
-        onChange={(e) => setpreferredDate(e.target.value)}
-        style={{
-          width: '100%',
-          padding: '10px',
-          borderRadius: '8px',
-          marginBottom: '15px',
-          border: 'none',
-        }}
-      />
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Preferred date</label>
+                    <input
+                      type="date"
+                      value={preferredDate}
+                      onChange={(e) => setpreferredDate(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '10px',
+                        borderRadius: '8px',
+                        marginBottom: '15px',
+                        border: 'none',
+                      }}
+                    />
 
-      <label style={{ display: 'block', marginBottom: '5px' }}>Reason</label>
-      <textarea
-        value={reason}
-        onChange={(e) => setReason(e.target.value)}
-        style={{
-          width: '100%',
-          padding: '10px',
-          borderRadius: '8px',
-          marginBottom: '15px',
-          border: 'none',
-          resize: 'none',
-          height: '80px',
-        }}
-      />
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Reason</label>
+                    <textarea
+                      value={reason}
+                      onChange={(e) => setReason(e.target.value)}
+                      style={{
+                        width: '100%',
+                        padding: '10px',
+                        borderRadius: '8px',
+                        marginBottom: '15px',
+                        border: 'none',
+                        resize: 'none',
+                        height: '80px',
+                      }}
+                    />
 
-      <label style={{ display: 'block', marginBottom: '5px' }}>Upload ID Card</label>
-      <input
-        type="file"
-        onChange={(e) => setIdCard(e.target.files[0])}
-        style={{
-          marginBottom: '20px',
-        }}
-      />
+                    <label style={{ display: 'block', marginBottom: '5px' }}>Upload ID Card</label>
+                    <input
+                      type="file"
+                      onChange={(e) => setIdCard(e.target.files[0])}
+                      style={{
+                        marginBottom: '20px',
+                      }}
+                    />
 
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <button
-          type="submit"
-          style={{
-            background: 'rgba(255, 255, 255, 0.3)',
-            border: 'none',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            color: '#fff',
-          }}
-        >
-          Submit
-        </button>
-        <button
-          type="button"
-          onClick={() => setShowForm(false)}
-          style={{
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: 'none',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            cursor: 'pointer',
-            color: '#fff',
-          }}
-        >
-          Close
-        </button>
-      </div>
-    </form>
-  </div>
-)}
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <button
+                        type="submit"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.3)',
+                          border: 'none',
+                          padding: '10px 20px',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          color: '#fff',
+                        }}
+                      >
+                        Submit
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowForm(false)}
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.1)',
+                          border: 'none',
+                          padding: '10px 20px',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          color: '#fff',
+                        }}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
 
-              <button className="btn btn-primary btn-lg" style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
-                <FaFileAlt style={{marginRight: '8px'}} />
+              <button className="btn btn-primary btn-lg" style={{ border: "1px solid rgba(247, 241, 241, 0.56)" }}>
+                <FaFileAlt style={{ marginRight: '8px' }} />
                 View Medical Records
               </button>
-              <button className="btn btn-primary btn-lg" style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
-                <FaPills style={{marginRight: '8px'}} />
+              <button className="btn btn-primary btn-lg" style={{ border: "1px solid rgba(247, 241, 241, 0.56)" }}>
+                <FaPills style={{ marginRight: '8px' }} />
                 Request Prescription
               </button>
-              <button className="btn btn-primary btn-lg" style={{border: "1px solid rgba(247, 241, 241, 0.56)"}}>
-                <FaBell style={{marginRight: '8px'}} />
+              <button className="btn btn-primary btn-lg" style={{ border: "1px solid rgba(247, 241, 241, 0.56)" }}>
+                <FaBell style={{ marginRight: '8px' }} />
                 Set Reminders
               </button>
             </div>
