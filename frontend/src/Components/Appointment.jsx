@@ -4,6 +4,7 @@ import "./Appointment.css";
 import Navbar from "../Elements/Navbar";
 import Footer from "../Elements/Footer";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 export default function AppointmentPage() {
   const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
@@ -14,7 +15,7 @@ const [preferredDate, setPreferredDate] = useState("");
 const [preferredTime, setPreferredTime] = useState("");
 const [reason, setReason] = useState("");
 
-
+const nav = useNavigate();
   // Fetch doctors from backend
   useEffect(() => {
     fetch("http://localhost:8000/api/users/doctors") // doctors cards dynamic
@@ -31,7 +32,8 @@ const [reason, setReason] = useState("");
 
   const handleBookClick = (doctor) => {
     if (!sessionStorage.getItem("userId")) {
-      window.alert("Login to book");
+      window.alert("Please first Login to book");
+      nav('/login');
       return;
     }
     setSelectedDoctor(doctor);

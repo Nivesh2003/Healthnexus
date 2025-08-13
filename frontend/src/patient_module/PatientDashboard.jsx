@@ -21,6 +21,7 @@ import {
   FaInfoCircle
 } from "react-icons/fa";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function PatientDashboard() {
 
@@ -135,7 +136,7 @@ function PatientDashboard() {
               </div>
               <div className="col-md-4 text-end">
                 <div className="d-flex flex-column align-items-end">
-                  <span className="badge  text-white mb-2">Active Patient</span>
+                <Link to="/find-doctor"> <span className="badge text-white mb-2">Were you looking for a specific doctor?</span></Link>
                   <div className="d-flex gap-2">
                     <button className="btn btn-outline-light btn-sm">
                       <FaBell style={{ marginRight: '4px' }} />

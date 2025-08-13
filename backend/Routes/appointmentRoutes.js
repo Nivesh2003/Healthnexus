@@ -157,6 +157,11 @@ AppointmentRouter.put('/:id/respond', async (req, res) => {
       await appointment.save();
       return res.json(appointment);
     }
+    if (status === 'completed') {
+      appointment.status = 'completed';
+      await appointment.save();
+      return res.json({ msg: "Appointment marked as completed", appointment });
+    }
 
     return res.status(400).json({ error: "Invalid status. Use 'accepted' or 'rejected'." });
 
