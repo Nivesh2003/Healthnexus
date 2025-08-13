@@ -98,7 +98,7 @@ function DoctorAppointments() {
     <div style={{ width: '100%', padding: '20px 40px 20px 20px', margin: '0' }}>
       <div className="row" style={cardStyle}>
         <div className="col-4">
-        <h2 className="mb-2 text-center" style={{color:'wheat'}}>Appointments</h2>
+        <h2 className="mb-2 text-center bold" style={{color:'Black'}}>Appointments</h2>
         </div>
         <div className="col-8 text-end">
           <div className="btn btn-large btn-outline-warning">ADD NEW APPOINTMENT</div>
@@ -106,7 +106,7 @@ function DoctorAppointments() {
       </div>
       <div className="row">
         {/* Left Column - Appointments List */}
-        <div className="col-lg-9">
+        <div className="col-lg-12">
           {/* Upcoming Appointments */}
           <div style={cardStyle}>
             <h5 className="mb-3">
@@ -200,81 +200,7 @@ function DoctorAppointments() {
         </div>
 
         {/* Right Column - Actions and Stats */}
-        <div className="col-lg-3">
-
-          {/* Appointment Statistics */}
-          <div style={cardStyle}>
-            <h5 className="mb-3">
-              <FontAwesomeIcon icon={faChartBar} style={iconStyle} />
-              Appointment Stats
-            </h5>
-            <div className="row text-center">
-              <div className="col-6">
-                <div className="border-end">
-                  <h4 className="text-success mb-1">3</h4>
-                  <small className="text-muted">Upcoming</small>
-                </div>
-              </div>
-              <div className="col-6">
-                <h4 className="text-warning mb-1">2</h4>
-                <small className="text-muted">Past</small>
-              </div>
-            </div>
-            <hr />
-            <div className="row text-center">
-              <div className="col-6">
-                <div className="border-end">
-                  <h4 className="text-danger mb-1">1</h4>
-                  <small className="text-muted">Tomorrow</small>
-                </div>
-              </div>
-              <div className="col-6">
-                <h4 className="text-info mb-1">3</h4>
-                <small className="text-muted">Doctors</small>
-              </div>
-            </div>
-          </div>
-
-          {/* Next Appointment */}
-          <div style={cardStyle}>
-            <h5 className="mb-3">
-              <FontAwesomeIcon icon={faClock} style={iconStyle} />
-              Next Appointment
-            </h5>
-            <div style={{backgroundColor: '#fff3cd', padding: '15px', borderRadius: '8px'}}>
-              <h6 className="text-danger mb-2">Cardiology Consultation</h6>
-              <p className="mb-1"><strong>Tomorrow</strong></p>
-              <p className="mb-1">Dec 18, 2025 at 10:00 AM</p>
-              <p className="mb-2">Dr. Sarah Johnson</p>
-              <button className="btn btn-outline-primary btn-sm w-100">
-                <FontAwesomeIcon icon={faMapMarkerAlt} style={{marginRight: '4px'}} />
-                Get Directions
-              </button>
-            </div>
-          </div>
-
-          {/* Calendar View */}
-          <div style={cardStyle}>
-            <h5 className="mb-3">
-              <FontAwesomeIcon icon={faCalendarDay} style={iconStyle} />
-              This Month
-            </h5>
-            <div style={{backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '8px', textAlign: 'center'}}>
-              <div className="mb-2">
-                <span className="badge bg-danger me-1">18</span>
-                <small>Cardiology</small>
-              </div>
-              <div className="mb-2">
-                <span className="badge bg-success me-1">25</span>
-                <small>Diabetes</small>
-              </div>
-              <div>
-                <span className="badge bg-info me-1">02</span>
-                <small>Neurology</small>
-              </div>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   );

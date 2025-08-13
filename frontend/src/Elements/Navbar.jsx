@@ -36,17 +36,21 @@ function Navbar() {
                         </button>
 
                         {/* Navbar items */}
+                         
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav ms-auto align-items-center me-5">
+                                <li className="nav-item">
+                                    <Link className="nav-link text-primary fw-semibold" to="/find-doctor">Find Doctors</Link>
+                                </li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle text-primary fw-semibold" href="#" 
                                        role="button" data-bs-toggle="dropdown">
-                                        Treatments
+                                        Services
                                     </a>
                                     <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Treatment 1</a></li>
-                                        <li><a className="dropdown-item" href="#">Treatment 2</a></li>
-                                        <li><a className="dropdown-item" href="#">Treatment 3</a></li>
+                                        <li><Link to={'/medicine'} className="dropdown-item" href="#">Pharmacy</Link></li>
+                                        <li><Link to={'/labtest'} className="dropdown-item" href="#">Lab Tests</Link></li>
+                                        {/* <li><Link  className="dropdown-item" href="#facilities">Our Facilities</Link></li> */}
                                     </ul>
                                 </li>
                                 <li className="nav-item dropdown">
@@ -59,10 +63,8 @@ function Navbar() {
                                         <li><Link to={'/bodyfat'} className='dropdown-item'>Body Fat calculator</Link></li>
                                     </ul>
                                 </li>
-                                {/* <li className="nav-item">
-                                    <a className="nav-link text-primary fw-semibold" href="#">International Patients</a>
-                                </li> */}
-                                <li className="nav-item dropdown">
+                               
+                                {/* <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle text-primary fw-semibold" href="#" 
                                        role="button" data-bs-toggle="dropdown">
                                         Quick Enquiry
@@ -72,7 +74,7 @@ function Navbar() {
                                         <li><a className="dropdown-item" href="#">Enquiry 2</a></li>
                                         <li><a className="dropdown-item" href="#">Enquiry 3</a></li>
                                     </ul>
-                                </li>
+                                </li> */}
 
                                 <li className='nav-item'>
                                     <Link to={'/login'} className='fw-semibold btn btn-outline-primary mx-2'>Login/Register</Link>

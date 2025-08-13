@@ -153,7 +153,7 @@ function Home() {
                     </div>
                 </div>
                 {/* Facilities Cards with Bootstrap Grid */}
-                <div className='row justify-content-center mt-5 mx-3 cursor-pointer'>
+                <div className='row justify-content-center mt-5 mx-3 cursor-pointer' id="facilities">
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
                         <Link to="/find-doctor" className="text-decoration-none"> {/*Link to appointment page */}
                             <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto find-doc' style={{ maxWidth: '250px', minHeight: '150px' }}>

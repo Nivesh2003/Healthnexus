@@ -25,6 +25,7 @@ import Dashboard from './Admin/Dashboard'
 import LabTestAdd from './Admin/LabTestAdd'
 import Medicine from './Medicine/Medicine'
 
+
 function App() {
   return (
     <>
@@ -68,7 +69,6 @@ function App() {
             <Route path="appointments" element={<DoctorAppointments />} />
           </Route>
           {/*Doctor dashboard routes*/}
-
         </Routes>
 
       </BrowserRouter>
