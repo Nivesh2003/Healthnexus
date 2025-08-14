@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PrescriptionForm from './PrescriptionForm';
 import { 
   faCalendarAlt, 
   faFileAlt, 
@@ -109,11 +110,11 @@ function DoctorAppointments() {
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
   };
   
-  const upcomingStyle = {
-    ...appointmentCardStyle,
-    borderLeft: '4px solid #28a745',
-    backgroundColor: 'rgba(40, 167, 69, 0.1)'
-  };
+  // const upcomingStyle = {
+  //   ...appointmentCardStyle,
+  //   borderLeft: '4px solid #28a745',
+  //   backgroundColor: 'rgba(40, 167, 69, 0.1)'
+  // };
   
   const pastStyle = {
     ...appointmentCardStyle,
@@ -266,7 +267,7 @@ function DoctorAppointments() {
         <form
           onSubmit={submitCompleteForm}
           style={{
-            width: '400px',
+            width: '1000px',
             padding: '30px',
             borderRadius: '15px',
             background: 'rgba(255, 255, 255, 0.15)',
@@ -277,6 +278,7 @@ function DoctorAppointments() {
           }}
         >
           <h4 style={{ marginBottom: '20px', textAlign: 'center' }}>Complete Appointment</h4>
+          <PrescriptionForm onClose={() => setShowCompleteForm(false)} />
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <button
               type="submit"

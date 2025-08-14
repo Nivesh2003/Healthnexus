@@ -65,7 +65,7 @@ AppointmentRouter.get('/doctor/:doctorId', async (req, res) => {
 // Doctor accepts/rejects appointment
 AppointmentRouter.put('/:id/respond', async (req, res) => {
   try {
-    const { status, appointmentDate } = req.body;
+    const { status, appointmentDate, remarks } = req.body;
     const doctorId = req.body.doctorId; // doctorId must be sent in body to identify who is responding
 
     if (!doctorId) {
@@ -125,7 +125,13 @@ AppointmentRouter.put('/:id/respond', async (req, res) => {
       return res.json(appointment);
     }
 
-    return res.status(400).json({ error: "Invalid status. Use 'accepted' or 'rejected'." });
+    if (status === 'completed') {
+      appointment.status = 'completed';
+      await appointment.save();
+      return res.json({ msg: "Appointment marked as completed", appointment });
+    }
+
+    return res.status(400).json({ error: "Invalid status. Use 'accepted', 'rejected', or 'completed'." });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
