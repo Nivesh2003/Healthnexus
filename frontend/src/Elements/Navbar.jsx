@@ -18,6 +18,7 @@ function Navbar() {
         sessionStorage.clear();
         setIsLoggedIn(false);
         navigate('/');
+        localStorage.setItem('role', '');
     };
     const handleViewProfile = () => {
         const role = localStorage.getItem('role');
@@ -94,7 +95,7 @@ function Navbar() {
                                             </button>
                                             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                                                 <li><button className="dropdown-item" onClick={handleViewProfile}>View Profile</button></li>
-                                                <li><button className="dropdown-item text-danger" onClick={handleLogout}>Logout</button></li>
+                                                <li><button className="dropdown-item text-danger" onClick={handleLogout} >Logout</button></li>
                                             </ul>
                                         </div>
                                     ) : (
