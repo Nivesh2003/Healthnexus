@@ -48,7 +48,7 @@ function Navbar() {
                         <Link to={'/'}>
                             <div className="navbar-brand d-flex align-items-center">
                                 <img src='./src/assets/images/logomain.png' alt="Logo" className="me-2" style={{ height: '50px', width: '50px' }} />
-                                <img src={brandImages.logo} alt="Logo GIF" style={{ height: '40px', width: '183px' }} />
+                                <img src={brandImages.logo} alt="Logo GIF" style={{ height: '40px', width: '183px' ,borderRadius:'55px'}} />
                             </div>
                         </Link>
                         {/* Mobile toggle button */}
