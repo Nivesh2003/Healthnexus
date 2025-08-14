@@ -26,7 +26,13 @@ userSchema = mongoose.Schema({
     image: {
         type: String, // store file path or filename
         default: null
-      }
+      },
+      fee: {
+        type: Number, // fee in INR
+        default: 40,   // default ₹1
+        min: 40,       // min ₹1
+        max: 1000       // max ₹10
+    }
 });
 const User = mongoose.model('User', userSchema);
 module.exports = User;

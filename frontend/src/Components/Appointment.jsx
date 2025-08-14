@@ -3,22 +3,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Appointment.css";
 import Navbar from "../Elements/Navbar";
 import Footer from "../Elements/Footer";
-import axios from 'axios';
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe("pk_test_51Rvv1xJCsoKPd0cPHYMfKkTlxO9rCXl0imzzbNmQrsGGBERPKi9ZHFQW65zXMfn9aRjwrtoxlAVZlneInRQR7RG800hkgTjiva"); // replace with your Stripe key
+
 export default function AppointmentPage() {
   const [doctors, setDoctors] = useState([]);
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [showForm, setShowForm] = useState(false);
-const [preferredDate, setPreferredDate] = useState("");
-const [preferredTime, setPreferredTime] = useState("");
-const [reason, setReason] = useState("");
+  const [preferredDate, setPreferredDate] = useState("");
+  const [preferredTime, setPreferredTime] = useState("");
+  const [reason, setReason] = useState("");
 
-const nav = useNavigate();
+  const nav = useNavigate();
+
   // Fetch doctors from backend
   useEffect(() => {
-    fetch("http://localhost:8000/api/users/doctors") // doctors cards dynamic
+    fetch("http://localhost:8000/api/users/doctors")
       .then((res) => res.json())
       .then((data) => {
         if (data.msg === "success") {
@@ -30,36 +35,72 @@ const nav = useNavigate();
       .catch((err) => console.error("Error fetching doctors:", err));
   }, []);
 
-  const handleBookClick = (doctor) => {
+  // Check Stripe redirect after payment
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const doctorData = JSON.parse(sessionStorage.getItem("selectedDoctor"));
+  
+    if (params.get("payment") === "success" && doctorData) {
+      setSelectedDoctor(doctorData);
+      setShowForm(true);
+      sessionStorage.removeItem("selectedDoctor");
+  
+      // Clean the URL so the form doesn't reopen on refresh
+      window.history.replaceState({}, document.title, "/find-doctor");
+    }
+  }, []);
+  
+  
+
+  // Handle Book Now click → Stripe payment
+  const handleBookClick = async (doctor) => {
     if (!sessionStorage.getItem("userId")) {
       window.alert("Please first Login to book");
-      nav('/login');
+      nav("/login");
       return;
     }
-    setSelectedDoctor(doctor);
-    setShowForm(true);
+
+    sessionStorage.setItem("selectedDoctor", JSON.stringify(doctor));
+
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/payment/create-checkout-session",
+        {
+          doctorName: doctor.fullName,
+          doctorFee: doctor.fee,
+        }
+      );
+
+      const stripe = await stripePromise;
+      await stripe.redirectToCheckout({ sessionId: res.data.id });
+    } catch (err) {
+      console.error(err);
+      alert("Error starting payment");
+    }
   };
 
+  // Submit appointment form
   const submitForm = async (e) => {
-  e.preventDefault();
-  try {
-    await axios.post("http://localhost:8000/api/appointments/create/specific", {
-      patientId: sessionStorage.getItem("userId"),
-      doctorId: selectedDoctor._id,
-      preferredDate,
-      preferredTime,
-      reason
-    });
-    alert("Appointment request sent");
-    setShowForm(false);
-  } catch (err) {
-    console.error(err);
-    alert("Failed to create appointment");
-  }
-};
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:8000/api/appointments/create/specific", {
+        patientId: sessionStorage.getItem("userId"),
+        doctorId: selectedDoctor._id,
+        preferredDate,
+        preferredTime,
+        reason,
+      });
+      alert("Appointment request sent");
+      setShowForm(false);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to create appointment");
+    }
+  };
 
   // Search filter
-  const handleSearch = (term) => {
+  const handleSearch = (e) => {
+    const term = e.target.value;
     setSearchTerm(term);
     const filtered = doctors.filter(
       (doc) =>
@@ -124,6 +165,11 @@ const nav = useNavigate();
             <small className="text-muted">
               Doctor ID: {doctor.d_id || "N/A"}
             </small>
+            <br />
+            <small className="text-muted">
+  Fee: ₹{doctor.fee || 1}
+</small>
+
           </div>
         </div>
 

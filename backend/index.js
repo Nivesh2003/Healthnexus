@@ -13,6 +13,10 @@ const path = require('path');
 const AppointmentRouter = require('./Routes/appointmentRoutes');
 const questionRoute = require('./Routes/questionRoutes');
 
+const paymentRoutes = require('./Routes/payment');
+
+
+
 dotenv.config();
 app.use(express.json());
 app.use(cors());
@@ -25,6 +29,8 @@ app.use('/api/users', userRoute); // All users routes
 app.use("/api/appointments", AppointmentRouter); //Appointment booking route
 app.use('/chat', chatbot);
 app.use('/api/questions',questionRoute);
+
+app.use('/api/payment', paymentRoutes); 
 app.use('/image/users', express.static('public/image/users'));
 
 app.listen(port, () => {
