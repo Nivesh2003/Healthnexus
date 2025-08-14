@@ -152,7 +152,7 @@ function Home() {
                     <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4'>
                     <Link to="/medicine" style={{ textDecoration: 'none' }}>
                         <div className='bg-white rounded shadow text-center p-3 h-100 mx-auto' style={{ maxWidth: '250px', minHeight: '150px' }}>
-                            <img src="./src/assets/images/doctor-gym.gif" alt="Second Opinion" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
+                            <img src="./src/assets/images/medi.gif" alt="Second Opinion" style={{ width: '100px', height: '100px', objectFit: 'contain' }} />
                             <h6 className='mt-2 text-primary fw-bold' style={{ fontSize: '24px', margin: '0' }}>Medicine</h6>
                         </div>
                         </Link>
@@ -387,7 +387,7 @@ function Home() {
        
       </Row>
       <Row xs={1} md={2} lg={4} className="g-4">
-       <Link to={"/blog"}><Col>
+       <Link to={"/blog"} className='text-decoration-none'><Col>
             <Card className="h-100 shadow-sm">
               <Card.Img variant="top" src={b1} />
               <Card.Body>
@@ -397,7 +397,7 @@ function Home() {
             </Card>
           </Col></Link>
 
-          <Link to={"/blog"}><Col>
+          <Link to={"/blog"} className='text-decoration-none'><Col>
             <Card className="h-100 shadow-sm">
               <Card.Img variant="top" src={b2} />
               <Card.Body>
@@ -408,7 +408,7 @@ function Home() {
           </Col>
 </Link>
 
- <Link to={"/blog"}>
+ <Link to={"/blog"} className='text-decoration-none'>
         <Col>
             <Card className="h-100 shadow-sm">
               <Card.Img variant="top" src={b3} />
@@ -419,7 +419,7 @@ function Home() {
             </Card>
           </Col>
 </Link>
- <Link to={"/blog"}>
+ <Link to={"/blog"} className='text-decoration-none'>
           <Col>
             <Card className="h-100 shadow-sm">
               <Card.Img variant="top" src={b4} />

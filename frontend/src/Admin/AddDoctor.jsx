@@ -2,40 +2,42 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function AddDoctor() {
-	const [formData, setFormData] = useState({
-		fullName: '',
-		dob: '',
-		mobile: '',
-		email: '',
-		gender: '',
-		password: '',
-		speciality: ''
-	});
+const [formData,setFormData] = useState({
+  fullName: '',
+  dob: '',
+  mobile: '',
+  email: '',
+  gender: '',
+  password: '',
+  type: 'doctor',
+  speciality: '', // default is patient register
+  d_id: '',
+  image: null
+});
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		try {
-			const response = await axios.post('http://localhost:8000/api/users/register', {
-				...formData,
-				type: 'doctor'
-			});
-			if (response.data.msg === 'success') {
-				window.alert('Doctor added successfully');
-				setFormData({
-					fullName: '',
-					dob: '',
-					mobile: '',
-					email: '',
-					gender: '',
-					password: '',
-					speciality: ''
-				});
-			} else {
-				window.alert('Failed to add doctor');
-			}
-		} catch{
-			window.alert('Error occurred while adding doctor');
-		}
+		const data = new FormData();
+  Object.keys(formData).forEach(key => {
+    data.append(key, formData[key]);
+  });
+
+  try {
+    const response = await axios.post(
+      'http://localhost:8000/api/users/register',
+      data,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }
+    );
+
+    if (response.data.msg === "success") {
+      window.alert("Registration successful");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Registration failed");
+  }
 	}
 
 	return (
@@ -85,6 +87,20 @@ function AddDoctor() {
 						<option value="General Medicine">General Medicine</option>
 					</select>
 				</div>
+				 {/* Doctor ID */}
+            <div className="mb-3">
+              <label className="form-label">Doctor ID</label>
+              <input type="text" name="d_id" value={formData.d_id}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                className="form-control" placeholder="Enter your Doctor ID" />
+            </div>
+           {/* Image Upload */}
+           <div className="mb-3">
+          <label className="form-label">Profile Image</label>
+          <input type="file" name="image"
+            onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+            className="form-control" accept="image/*" />
+        </div>
 				<div className="mb-2 text-center">
 					<label className="form-label d-block">Gender</label>
 					<div className="d-flex justify-content-center gap-5">
