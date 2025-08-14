@@ -30,8 +30,14 @@ async function handleSubmit(e) {
   e.preventDefault();
   const data = new FormData();
   Object.keys(formData).forEach(key => {
+  if (key === "image") {
+    if (formData.image) {
+      data.append("image", formData.image);
+    }
+  } else {
     data.append(key, formData[key]);
-  });
+  }
+});
 
   try {
     const response = await axios.post(

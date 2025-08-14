@@ -25,13 +25,13 @@ userSchema = mongoose.Schema({
     },
     image: {
         type: String, // store file path or filename
-        default: null
-      },
-      fee: {
+        default: 'doctor.jpg'
+    },
+    fee: {
         type: Number, // fee in INR
-        default: 40,   // default ₹1
-        min: 40,       // min ₹1
-        max: 1000       // max ₹10
+        default: 400,   // default ₹400
+        min: 400,       // min ₹400
+        max: 1000       // max ₹1000
     }
 });
 const User = mongoose.model('User', userSchema);

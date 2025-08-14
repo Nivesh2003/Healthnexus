@@ -174,7 +174,7 @@ useEffect(() => {
                             src={
                               doctor.image
                                 ? `http://localhost:8000/image/users/${doctor.image}`
-                                : "/placeholder.png"
+                                : "http://localhost:8000/image/users/doctor.jpg"
                             }
                             alt={doctor.fullName}
                             className="rounded-circle me-3"
