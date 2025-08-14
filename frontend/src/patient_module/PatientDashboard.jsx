@@ -21,6 +21,7 @@ import {
   FaInfoCircle
 } from "react-icons/fa";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function PatientDashboard() {
 
@@ -125,12 +126,7 @@ function PatientDashboard() {
             <div className="row align-items-center">
               <div className="col-md-8">
                 <div className="d-flex align-items-center">
-                  <img
-                    src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?cs=srgb&dl=pexels-italo-melo-881954-2379004.jpg&fm=jpg"
-                    alt="Patient"
-                    style={profileImageStyle}
-                    className="me-4"
-                  />
+                <img src={user?.image? `http://localhost:8000/image/users/${user.image}`: "/placeholder.png" }alt={user?.fullName || "Doctor"}style={profileImageStyle}className="me-4"/>
                   <div>
                     <h2 className="mb-2">Welcome back {user.fullName} </h2>
                     <p className="mb-1 opacity-75">Patient ID: {(user._id).slice(-8)}</p>
@@ -140,7 +136,7 @@ function PatientDashboard() {
               </div>
               <div className="col-md-4 text-end">
                 <div className="d-flex flex-column align-items-end">
-                  <span className="badge  text-white mb-2">Active Patient</span>
+                <Link to="/find-doctor"> <span className="badge text-white mb-2">Were you looking for a specific doctor?</span></Link>
                   <div className="d-flex gap-2">
                     <button className="btn btn-outline-light btn-sm">
                       <FaBell style={{ marginRight: '4px' }} />

@@ -11,7 +11,9 @@ const [formData,setformData] = useState({
   gender: '',
   password: '',
   type: 'patient',
-  speciality: '' // default is patient register
+  speciality: '', // default is patient register
+  d_id: '',
+  image: null
 });
 function handleDoctor(e) {
   e.preventDefault();
@@ -26,10 +28,26 @@ function handleDoctor(e) {
 };
 async function handleSubmit(e) {
   e.preventDefault();
-  const response = await axios.post('http://localhost:8000/api/users/register',formData);
-  if(response.data.msg=="success"){
-    window.alert("Registration successfull");
+  const data = new FormData();
+  Object.keys(formData).forEach(key => {
+    data.append(key, formData[key]);
+  });
 
+  try {
+    const response = await axios.post(
+      'http://localhost:8000/api/users/register',
+      data,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }
+    );
+
+    if (response.data.msg === "success") {
+      window.alert("Registration successful");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Registration failed");
   }
   
 }
@@ -63,29 +81,44 @@ async function handleSubmit(e) {
         <input type="email" name="email" value={formData.email} onChange={(e) => setformData({ ...formData, [e.target.name]: e.target.value })} className="form-control" placeholder="Email" style={{ fontWeight: 200 }}/>
       </div>
 
-      {isDoctor && (
-      <div className="mb-3">
-       <label className="form-label">Speciality</label>
-        <select
-          name="speciality"
-           value={formData.speciality}
-          onChange={(e) => setformData({ ...formData, [e.target.name]: e.target.value })}
-         className="form-control">
- <option value="">Select Speciality</option>
-      <option value="Cardiology">Cardiology (Heart)</option>
-      <option value="Dermatology">Dermatology (Skin)</option>
-      <option value="Pediatrics">Pediatrics (Children)</option>
-      <option value="Orthopedics">Orthopedics (Bones & Joints)</option>
-      <option value="Neurology">Neurology (Brain & Nerves)</option>
-      <option value="Gynecology">Gynecology (Women's Health)</option>
-      <option value="Dentistry">Dentistry (Teeth & Gums)</option>
-      <option value="Ophthalmology">Ophthalmology (Eye Care)</option>
-      <option value="Psychiatry">Psychiatry (Mental Health)</option>
-      <option value="General Medicine">General Medicine</option>
-    </select>
-  </div>
-)}
-
+         {/* Doctor Specific Fields */}
+         {isDoctor && (
+          <>
+            <div className="mb-3">
+              <label className="form-label">Speciality</label>
+              <select name="speciality" value={formData.speciality}
+                onChange={(e) => setformData({ ...formData, [e.target.name]: e.target.value })}
+                className="form-control">
+                <option value="">Select Speciality</option>
+                <option value="Cardiology">Cardiology (Heart)</option>
+                <option value="Dermatology">Dermatology (Skin)</option>
+                <option value="Pediatrics">Pediatrics (Children)</option>
+                <option value="Orthopedics">Orthopedics (Bones & Joints)</option>
+                <option value="Neurology">Neurology (Brain & Nerves)</option>
+                <option value="Gynecology">Gynecology (Women's Health)</option>
+                <option value="Dentistry">Dentistry (Teeth & Gums)</option>
+                <option value="Ophthalmology">Ophthalmology (Eye Care)</option>
+                <option value="Psychiatry">Psychiatry (Mental Health)</option>
+                <option value="General Medicine">General Medicine</option>
+              </select>
+            </div>
+ 
+            {/* Doctor ID */}
+            <div className="mb-3">
+              <label className="form-label">Doctor ID</label>
+              <input type="text" name="d_id" value={formData.d_id}
+                onChange={(e) => setformData({ ...formData, [e.target.name]: e.target.value })}
+                className="form-control" placeholder="Enter your Doctor ID" />
+            </div>
+          </>
+        )}
+           {/* Image Upload */}
+           <div className="mb-3">
+          <label className="form-label">Profile Image</label>
+          <input type="file" name="image"
+            onChange={(e) => setformData({ ...formData, image: e.target.files[0] })}
+            className="form-control" accept="image/*" />
+        </div>
       <div className="mb-3 text-center">
           <label className="form-label d-block">Gender</label>
           <div className="d-flex justify-content-center gap-5">

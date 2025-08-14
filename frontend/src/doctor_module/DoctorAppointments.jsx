@@ -206,7 +206,7 @@ function DoctorAppointments() {
             </h5>
             
             {acceptedAppointments.map(a => (
-    <div key={a._id} style={pastStyle} className="mb-3">
+    <div key={a._id} style={upcomingStyle} className="mb-3">
       <div className="d-flex justify-content-between align-items-start mb-2">
         <div>
           <h6 className="mb-1">{a.reason || 'No reason provided'}</h6>
