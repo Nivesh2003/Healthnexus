@@ -110,11 +110,11 @@ function DoctorAppointments() {
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
   };
   
-  // const upcomingStyle = {
-  //   ...appointmentCardStyle,
-  //   borderLeft: '4px solid #28a745',
-  //   backgroundColor: 'rgba(40, 167, 69, 0.1)'
-  // };
+  const upcomingStyle = {
+    ...appointmentCardStyle,
+    borderLeft: '4px solid #28a745',
+    backgroundColor: 'rgba(40, 167, 69, 0.1)'
+  };
   
   const pastStyle = {
     ...appointmentCardStyle,
