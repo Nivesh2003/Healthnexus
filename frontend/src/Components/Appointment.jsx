@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Appointment.css";
 import Navbar from "../Elements/Navbar";
@@ -6,8 +6,8 @@ import Footer from "../Elements/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
-import { useRef } from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStethoscope } from "@fortawesome/free-solid-svg-icons";
 const stripePromise = loadStripe("pk_test_51Rvv1xJCsoKPd0cPHYMfKkTlxO9rCXl0imzzbNmQrsGGBERPKi9ZHFQW65zXMfn9aRjwrtoxlAVZlneInRQR7RG800hkgTjiva");
 
 export default function AppointmentPage() {
@@ -22,6 +22,7 @@ export default function AppointmentPage() {
   const [appointmentSent, setAppointmentSent] = useState(false);
 
   const nav = useNavigate();
+  const appointmentSubmittedRef = useRef(false);
 
   // Fetch doctors
   useEffect(() => {
@@ -36,49 +37,47 @@ export default function AppointmentPage() {
       })
       .catch((err) => console.error(err));
   }, []);
+// On mount → check if returning from Stripe payment 
 
-// On mount → check if returning from Stripe payment
-const appointmentSubmittedRef = useRef(false);
+  // Payment success handling
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const doctorData = JSON.parse(sessionStorage.getItem("selectedDoctor"));
+    const formData = JSON.parse(sessionStorage.getItem("appointmentForm"));
 
-useEffect(() => {
-  const params = new URLSearchParams(window.location.search);
-  const doctorData = JSON.parse(sessionStorage.getItem("selectedDoctor"));
-  const formData = JSON.parse(sessionStorage.getItem("appointmentForm"));
+    if (params.get("payment") === "success" && doctorData && formData && !appointmentSubmittedRef.current) {
+      setSelectedDoctor(doctorData);
+      setShowForm(true);
 
-  if (params.get("payment") === "success" && doctorData && formData && !appointmentSubmittedRef.current) {
-    setSelectedDoctor(doctorData);
-    setShowForm(true); // show form modal
+      const submitAfterPayment = async () => {
+        if (appointmentSubmittedRef.current) return;
+        appointmentSubmittedRef.current = true;
 
-    const submitAfterPayment = async () => {
-      if (appointmentSubmittedRef.current) return; // guard
-      appointmentSubmittedRef.current = true;      // mark as submitted
+        try {
+          await axios.post("http://localhost:8000/api/appointments/create/specific", {
+            patientId: sessionStorage.getItem("userId"),
+            doctorId: doctorData._id,
+            preferredDate: formData.preferredDate,
+            preferredTime: formData.preferredTime,
+            reason: formData.reason,
+          });
+          setAppointmentSent(true);
+          alert("Appointment request sent");
+        } catch (err) {
+          console.error(err);
+          alert("Failed to create appointment");
+        } finally {
+          sessionStorage.removeItem("selectedDoctor");
+          sessionStorage.removeItem("appointmentForm");
+          sessionStorage.removeItem("appointmentSubmitted"); 
+          window.history.replaceState({}, document.title, "/find-doctor");
+         
+        }
+      };
 
-      try {
-        await axios.post("http://localhost:8000/api/appointments/create/specific", {
-          patientId: sessionStorage.getItem("userId"),
-          doctorId: doctorData._id,
-          preferredDate: formData.preferredDate,
-          preferredTime: formData.preferredTime,
-          reason: formData.reason,
-        });
-        setAppointmentSent(true);
-        alert("Appointment request sent");
-      } catch (err) {
-        console.error(err);
-        alert("Failed to create appointment");
-      } finally {
-        sessionStorage.removeItem("selectedDoctor");
-        sessionStorage.removeItem("appointmentForm");
-        sessionStorage.removeItem("appointmentSubmitted");
-        window.history.replaceState({}, document.title, "/find-doctor");
-      }
-    };
-
-    submitAfterPayment();
-  }
-}, []);
-
-  
+      submitAfterPayment();
+    }
+  }, []);
 
   const handleBookClick = (doctor) => {
     if (!sessionStorage.getItem("userId")) {
@@ -90,7 +89,6 @@ useEffect(() => {
     setShowForm(true);
   };
 
-  // Save form changes to sessionStorage
   const handleFormChange = (field, value) => {
     if (field === "date") setPreferredDate(value);
     if (field === "time") setPreferredTime(value);
@@ -103,31 +101,19 @@ useEffect(() => {
     };
     sessionStorage.setItem("appointmentForm", JSON.stringify(formData));
   };
-
-  // Start payment
+// Start payment
   const handlePayment = async () => {
     sessionStorage.setItem("selectedDoctor", JSON.stringify(selectedDoctor));
-    try {
-      const res = await axios.post("http://localhost:8000/api/payment/create-checkout-session", {
-        doctorName: selectedDoctor.fullName,
-        doctorFee: selectedDoctor.fee,
-      });
-
-      const stripe = await stripePromise;
-      await stripe.redirectToCheckout({ sessionId: res.data.id });
-    } catch (err) {
-      console.error(err);
-      alert("Error starting payment");
-    }
-  };
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Just trigger payment, actual submission happens after success
-    handlePayment();
-  };
-
+    try { const res = await axios.post("http://localhost:8000/api/payment/create-checkout-session", { doctorName: selectedDoctor.fullName, doctorFee: selectedDoctor.fee, });
+     const stripe = await stripePromise; 
+     await stripe.redirectToCheckout({ sessionId: res.data.id }); } 
+     catch (err) { console.error(err); 
+      alert("Error starting payment"); } };
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault(); // Just trigger payment, actual submission happens after success
+        handlePayment();
+      };
   const handleSearch = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
@@ -142,16 +128,18 @@ useEffect(() => {
   return (
     <>
       <Navbar />
-      <div className="d-flex min-vh-100" style={{ backgroundColor: "#f8f9fa" }}>
+      <div className="d-flex min-vh-100 bg-light">
         <div className="flex-grow-1">
-          <div className="bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center">
-            <h4 className="mb-0 fw-bold">Best Doctors</h4>
+          {/* Header */}
+          <div className="bg-white border-bottom px-4 py-3 d-flex justify-content-between align-items-center shadow-sm">
+            <h3 className="mb-0 fw-bold text-primary text-center"><FontAwesomeIcon icon={faStethoscope} />&nbsp;Find the Best Doctors</h3>
           </div>
 
           <div className="row g-0">
+            {/* Doctor List */}
             <div className="col-9 p-4">
-              <div className="d-flex justify-content-between align-items-center mb-4">
-                <h5 className="fw-bold mb-0">Doctor List</h5>
+              <div className="d-flex justify-content-between align-items-center mb-4 ">
+                <h5 className="fw-bold mb-0 text-center text-muted">Available Doctors</h5>
                 <div className="input-group" style={{ width: "250px" }}>
                   <input
                     type="text"
@@ -164,11 +152,14 @@ useEffect(() => {
                 </div>
               </div>
 
-              <div className="row g-3">
+              <div className="row g-4">
                 {filteredDoctors.map((doctor) => (
-                  <div key={doctor._id} className="col-6">
-                    <div className="card h-100">
-                      <div className="card-body">
+                  <div key={doctor._id} className="col-md-6">
+                    <div
+                      className="card h-100 border-0 shadow-sm rounded hover-card"
+                      style={{ transition: "all 0.3s" }}
+                    >
+                      <div className="card-body doccard">
                         <div className="d-flex align-items-center mb-3">
                           <img
                             src={
@@ -177,42 +168,31 @@ useEffect(() => {
                                 : "http://localhost:8000/image/users/doctor.jpg"
                             }
                             alt={doctor.fullName}
-                            className="rounded-circle me-3"
+                            className="rounded-circle me-3 border"
                             width="80"
                             height="80"
                             style={{ objectFit: "cover" }}
                           />
                           <div>
                             <h6 className="fw-bold mb-1">{doctor.fullName}</h6>
-                            <small className="text-muted">
-                              Speciality: {doctor.speciality || "N/A"}
-                            </small>
-                            <br />
-                            <small className="text-muted">Doctor ID: {doctor.d_id || "N/A"}</small>
-                            <br />
-                            <small className="text-muted">Fee: ₹{doctor.fee || 1}</small>
+                            <small className="text-muted">{doctor.speciality || "N/A"}</small>
                           </div>
                         </div>
+                        <p className="mb-1"><b>Experience:</b> {doctor.experience} years</p>
+                        <p className="mb-1"><b>Qualification:</b> {doctor.qualification}</p>
+                        <p className="mb-3"><b>Fee:</b> ₹{doctor.fee}</p>
 
-                        <button
-                          className="btn btn-outline-primary w-100 mb-2"
-                          onClick={() => setSelectedDoctor(doctor)}
-                        >
+                        <button className="btn btn-outline-primary w-100 mb-2" onClick={() => setSelectedDoctor(doctor)}>
                           View Details
                         </button>
-
-                        <button
-                          className="btn btn-success w-100"
-                          onClick={() => handleBookClick(doctor)}
-                        >
+                        <button className="btn btn-success w-100" onClick={() => handleBookClick(doctor)}>
                           Book Doctor
                         </button>
                       </div>
                     </div>
                   </div>
                 ))}
-
-                {showForm && selectedDoctor && (
+               {showForm && selectedDoctor && (
                   <div
                     style={{
                       position: "fixed",
@@ -297,35 +277,110 @@ useEffect(() => {
               </div>
             </div>
 
-            <div className="col-3 bg-white border-start p-4">
-              <h5 className="fw-bold mb-4">Detail Doctor</h5>
+            {/* Detail Doctor */}
+            <div className="col-3 bg-white border-start p-4 shadow-sm ">
+              <h5 className="fw-bold text-center mb-3 text-primary ">Doctor Details</h5>
               {selectedDoctor ? (
                 <>
-                  <div className="text-center mb-3">
+                  <div className="text-center mb-3 text-muted">
                     <img
-                      src={selectedDoctor?.image ? `http://localhost:8000/image/users/${selectedDoctor.image}` : "/placeholder.png"}
+                      src={
+                        selectedDoctor?.image
+                          ? `http://localhost:8000/image/users/${selectedDoctor.image}`
+                          : "/placeholder.png"
+                      }
                       alt={selectedDoctor?.fullName || "Doctor"}
-                      className="rounded-circle"
+                      className="rounded-circle shadow-sm border"
                       width="120"
                       height="120"
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                  <h5>{selectedDoctor.fullName}</h5>
-                  <p>Speciality: {selectedDoctor.speciality || "N/A"}</p>
-                  <p>Doctor ID: {selectedDoctor.d_id || "N/A"}</p>
-                  <p>Consulation Fee: ₹{selectedDoctor.fee || 1} </p>
-                  <p>Available on: <b>MON , FRI , THURS</b></p>
-                  <p>More details coming soon...</p>
+                  <h5 className="text-center fw-bold text-muted">{selectedDoctor.fullName}</h5>
+                  <p className="text-muted fw-semibold text-center ">{selectedDoctor.speciality || "N/A"}</p>
+                  <p className="text-center fw-semibold text-muted"><small>{selectedDoctor.qualification}</small></p>
+                  <hr />
+                  <p className=""><b>Doctor ID:</b> {selectedDoctor.d_id}</p>
+                  <p><b>Experience:</b> {selectedDoctor.experience} years</p>
+                  <p><b>Consultation Fee:</b> ₹{selectedDoctor.fee}</p>
+                  <p><b>Qualifications:</b> {selectedDoctor.qualification}</p>
+                  <p><b>Available Days:</b></p>
+                  <div className="d-flex flex-wrap gap-2 mb-3 text-muted">
+                    {selectedDoctor.availableDays?.map((day, i) => (
+                      <span key={i} className="badge day-badge">{day}</span>
+                    ))}
+                  </div>
+
+                  <h6 className="fw-bold text-primary">Available Slots</h6>
+                  {selectedDoctor.timeSlots?.length > 0 ? (
+                    <div className="d-flex flex-wrap gap-2 text-muted">
+                      {selectedDoctor.timeSlots.map((slot, index) => (
+                        <span key={index} className="badge slot-badge">{slot}</span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-muted">No slots available</p>
+                  )}
+
+                  <div className="mt-4">
+                    <h6 className="fw-bold text-primary">Book Appointment</h6>
+                    <p className="text-muted">Select a date and time to book an appointment with {selectedDoctor.fullName}</p>
+                    {/* Date and Time Picker Component */}
+                  </div>
+                  <div className="mt-4">
+                    <h6 className="fw-bold text-primary">Doctor Description</h6>
+                    <p className="text-muted">{selectedDoctor.description || "No description available"}</p>
+                    <h6 className="fw-bold text-primary">Experience</h6>
+                    <p className="text-muted">{selectedDoctor.experience || "No experience information available"}</p>
+                  </div>
                 </>
               ) : (
                 <p className="text-muted">Select a doctor to see details</p>
               )}
             </div>
+
+
+
+
           </div>
         </div>
       </div>
       <Footer />
+
+      {/* Custom CSS */}
+      <style>
+        {`
+          .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+          }
+          .day-badge, .slot-badge {
+            background-color: #f8f9fa;
+            color: #333;
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          }
+          .day-badge:hover, .slot-badge:hover {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+          }
+
+          .doccard {
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          border-radius: 10px; 
+          border: 1px solid lightgrey;
+          }
+
+          .doccard:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+          }
+        `}
+      </style>
     </>
   );
 }
