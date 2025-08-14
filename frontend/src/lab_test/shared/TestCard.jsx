@@ -1,6 +1,15 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 import './Test.css'
 export default function TestCard({ test, onBook }){
+    const nav = useNavigate();
+    const handleBookClick = async () => {
+    if (!sessionStorage.getItem("userId")) {
+      window.alert("Please first Login to book");
+      nav("/login");
+      return;
+    }
+  };
   return (
     <div className="card h-100 test-card">
       <img src={test.image} className="card-img-top" style={{height: '200px', objectFit: 'cover'}} alt={test.name} />
@@ -13,7 +22,7 @@ export default function TestCard({ test, onBook }){
             <small className="text-success">{test.turnaround} turnaround</small>
           </div>
           <div>
-            <button className="btn btn-sm btn-primary" onClick={onBook}>Book</button>
+            <button className="btn btn-sm btn-primary" onClick={() => { onBook(); handleBookClick(); }}>Book</button>
           </div>
         </div>
       </div>
