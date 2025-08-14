@@ -64,7 +64,7 @@ router.put('/:id', async (req, res) => {
     if (message !== undefined) updateData.message = message;
     if (adminReply !== undefined) updateData.adminReply = adminReply;
     if (status !== undefined) updateData.status = status;
-    if (status === 'answered' && !updateData.answeredAt) {
+    if (status === 'answered') {
         updateData.answeredAt = new Date();
     }
 

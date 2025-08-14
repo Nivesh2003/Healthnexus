@@ -28,6 +28,7 @@ import Blog from './Blog/Blog'
 import DoctorAdd from './Admin/AddDoctor'
 import ViewLab from './Admin/ViewLab';
 import Viewmedi from './Admin/Viewmedi';
+import PrescriptionForm from './doctor_module/PrescriptionForm';
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
             <Route path="doctor-main" element={<DoctorDashboard />} />
             <Route path="doctor-records" element={<DoctorRecords />} />
             <Route path="appointments" element={<DoctorAppointments />} />
+             <Route path='PrescriptionForm' element={<PrescriptionForm />} />
           </Route>
           {/*Doctor dashboard routes*/}
         </Routes>
