@@ -303,7 +303,7 @@ useEffect(() => {
                 <>
                   <div className="text-center mb-3">
                     <img
-                      src={selectedDoctor?.image ? `http://localhost:8000/image/users/${selectedDoctor.image}` : "/placeholder.png"}
+                      src={selectedDoctor?.image ? `http://localhost:8000/image/users/${selectedDoctor.image}` : "http://localhost:8000/image/users/doctor.jpg"}
                       alt={selectedDoctor?.fullName || "Doctor"}
                       className="rounded-circle"
                       width="120"
