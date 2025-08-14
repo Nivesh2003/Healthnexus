@@ -8,6 +8,7 @@ function Adminleft() {
     sessionStorage.clear();
     window.alert("Logged out");
     navigate('/login');
+    localStorage.setItem('role', '');
   }
 
   return (
@@ -78,7 +79,8 @@ function Adminleft() {
         borderTop: '1px solid #34495e',
         textAlign: 'center'
       }}>
-        <button onClick={handleLogout} className="btn btn-danger mb-3">Logout </button>
+        <Link to="/"><button className="btn mb-3 btn-block text-white btn-primary" onClick={() => localStorage.setItem('role', 'admin')} style={{width: '100%'}}>Home</button></Link>
+        <button onClick={handleLogout} className="btn btn-danger mb-3" style={{width: '100%'}}>Logout </button>
       </div>
     </div>
   )

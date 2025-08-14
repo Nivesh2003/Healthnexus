@@ -137,8 +137,8 @@ function Docsidebar() {
         borderTop: '1px solid #34495e',
         textAlign: 'center'
       }}>
-        
-        <button onClick={handleLogout} className="btn btn-danger mb-3">Logout </button>
+        <Link to="/"><button className="btn mb-3 btn-block text-white btn-primary" onClick={() => localStorage.setItem('role', 'doctor')} style={{width: '100%'}}>Home</button></Link>
+        <button onClick={handleLogout} className="btn btn-danger mb-3" style={{width: '100%'}}>Logout </button>
         <div style={{ fontSize: '0.8rem', color: '#95a5a6', marginBottom: '10px' }}>
           Doctor Portal v1.0
         </div>
