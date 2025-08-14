@@ -326,6 +326,8 @@ export default function AppointmentPage() {
       <h5>{selectedDoctor.fullName}</h5>
       <p>Speciality: {selectedDoctor.speciality || "N/A"}</p>
       <p>Doctor ID: {selectedDoctor.d_id || "N/A"}</p>
+      <p>Consulation Fee: ₹{selectedDoctor.fee || 1} </p>
+      <p>Available on: <b>MON , FRI , THURS</b></p>
       <p>More details coming soon...</p>
     </>
   ) : (
